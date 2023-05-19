@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="uiFactory"
+            targetNamespace="uiFactory"
+            attributeFormDefault="qualified"
+            elementFormDefault="qualified">
+
+    <xsd:attributeGroup name="uiFactoryAttrGroup">
+        <xsd:anyAttribute id="uiFactoryParams" processContents="skip" namespace="##any">
+            <xsd:annotation>
+                <xsd:documentation>Parameters of the corresponding uiFactory, for configuration.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:anyAttribute>
+    </xsd:attributeGroup>
+
+    <xsd:attribute name="name" type="xsd:string">
+        <xsd:annotation>
+            <xsd:documentation>Name of the factory, responsible for creating ui components.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+</xsd:schema>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:view="view"
+            xmlns:core="core"
+            xmlns:uiFactory="uiFactory"
+            xmlns:formatterFactory="formatterFactory"
+            targetNamespace="view"
+            elementFormDefault="qualified">
+
+    <xsd:import namespace="core" schemaLocation="core-schema.xsd"/>
+    <xsd:import namespace="uiFactory" schemaLocation="ui-factory-schema.xsd"/>
+    <xsd:import namespace="formatterFactory" schemaLocation="formatter-factory-schema.xsd"/>
+
+    <!--  Abstract meta types  -->
+
+    <!--  ViewMeta types  -->
+
+    <xsd:complexType name="PDViewMeta" abstract="true">
+        <xsd:complexContent>
+            <xsd:extension base="core:PDMeta">
+                <xsd:attributeGroup ref="uiFactory:uiFactoryAttrGroup"/>
+                <xsd:attribute ref="uiFactory:name"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="PDListViewMeta">
+        <xsd:annotation>
+            <xsd:documentation>Defines an ListView view for a specified typeId.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="view:PDViewMeta">
+                <xsd:sequence minOccurs="0">
+                    <xsd:element name="columns">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Allows the definition of a sequence of columns for the parent ListView.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:complexType>
+                            <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                                <xsd:element name="column" type="view:PDColumn"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="PDColumn">
+        <xsd:annotation>
+            <xsd:documentation>Column of a ListView, containing some information.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:attribute name="name" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation>Name of the PDMemberMeta type.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="searchable" type="xsd:boolean" default="true">
+            <xsd:annotation>
+                <xsd:documentation>Defines the column as searchable by a filter. Default: true.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="sortable" type="xsd:boolean" default="true">
+            <xsd:annotation>
+                <xsd:documentation>Defines the column as sortable. Default: true.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="width" type="xsd:int">
+            <xsd:annotation>
+                <xsd:documentation>Defines width of the column in percent.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute ref="formatterFactory:name"/>
+        <xsd:attributeGroup ref="formatterFactory:formatterFactoryAttrGroup"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="PDDetailViewMeta">
+        <xsd:annotation>
+            <xsd:documentation>Defines an DetailView view for a specified typeId.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="view:PDViewMeta">
+                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xsd:element name="group" type="view:PDDetailViewGroupMeta"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!--  UIElementMeta types  -->
+
+    <xsd:complexType name="PDUIElementMeta" abstract="true">
+        <xsd:complexContent>
+            <xsd:extension base="view:PDViewMeta">
+                <xsd:attribute name="labelVisible" type="xsd:boolean">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines if the label of the element is visible or not.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="colLG" type="view:Columns" default="12">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines the count of columns spanned on large screens.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="colMD" type="view:Columns" default="12">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines the count of columns spanned on medium screens.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="colSD" type="view:Columns" default="12">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines the count of columns spanned on small screens.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="colOffset" type="view:Columns" default="0">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines the count of columns offset from the previous column. Default: 0.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="PDDetailViewGroupMeta">
+        <xsd:annotation>
+            <xsd:documentation>Defines a metadata for a grouping element.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="view:PDUIElementMeta">
+                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xsd:choice>
+                        <xsd:element name="group" type="view:PDDetailViewGroupMeta"/>
+                        <xsd:element name="item" type="view:PDDetailViewGroupItemMeta"/>
+                    </xsd:choice>
+                </xsd:sequence>
+
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="PDDetailViewGroupItemMeta">
+        <xsd:annotation>
+            <xsd:documentation>Defines an item containing any kind of PDMemberMeta information.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="view:PDUIElementMeta">
+                <xsd:attribute name="disabled" type="xsd:boolean" default="false">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines if the element is disabled. Default: false.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="PDDetailViewGroupToManyAssociationItemMeta">
+        <xsd:annotation>
+            <xsd:documentation>Defines a to-many association item containing a PDListViewMeta</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="view:PDDetailViewGroupItemMeta">
+                <xsd:attribute name="listview" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>Name to reference a specific PDListViewMeta</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!--  SimpleType restrictions  -->
+
+    <xsd:simpleType name="memberTypes">
+        <xsd:annotation>
+            <xsd:documentation>Types of PDMemberMeta.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="attribute"/>
+            <xsd:enumeration value="operation"/>
+            <xsd:enumeration value="association"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="Columns">
+        <xsd:annotation>
+            <xsd:documentation>Number of columns as byte.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:byte">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="12"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!--  Scheme definitions  -->
+
+    <xsd:element name="listView" type="view:PDListViewMeta"/>
+    <xsd:element name="detailView" type="view:PDDetailViewMeta"/>
+</xsd:schema>

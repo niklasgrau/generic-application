@@ -1,0 +1,101 @@
+### Get Employee
+POST localhost:8080/api/generic/1?typeId=-1431066120
+Content-Type: application/json
+
+{
+  "typeId": -1431066120,
+  "id": 1,
+  "propertySelection": [
+    "email",
+    "password",
+    "firstName",
+    "lastName",
+    "createdAt",
+    "updatedAt"
+  ]
+}
+
+### Get all Employee
+POST localhost:8080/api/generic/list?typeId=-1431066120
+Content-Type: application/json
+
+{
+  "typeId": -1431066120,
+  "propertySelection": [
+    "email",
+    "password",
+    "firstName",
+    "lastName",
+    "createdAt",
+    "updatedAt"
+  ],
+  "page": 1,
+  "pageSize": 50
+}
+
+### Create Employee
+POST localhost:8080/api/generic
+Content-Type: application/json
+
+{
+  "entity": {
+    "typeId": -1431066120,
+    "properties": {
+      "email": "max.mustermann@mail.de",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "password": "123456"
+    }
+  },
+  "associationStates": {
+    "managerProjects": {
+      "connected": [
+        {
+          "typeId": 714405519,
+          "id": 1
+        }
+      ],
+      "disconnected": [],
+      "deleted": []
+    }
+  }
+}
+
+### Update Employee
+PUT localhost:8080/api/generic/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "entity": {
+    "typeId": -1431066120,
+    "properties": {
+      "email": "max.muster-mann@mail.de",
+      "firstName": "Neuer-Vorname",
+      "lastName": "Neuer-Nachname",
+      "password": "123456"
+    }
+  },
+  "associationStates": {
+    "managerProjects": {
+      "connected": [
+        {
+          "typeId": 714405519,
+          "id": 2
+        }
+      ],
+      "disconnected": [
+        {
+          "typeId": 714405519,
+          "id": 1
+        }
+      ],
+      "deleted": []
+    }
+  }
+}
+
+### Delete Employee
+DELETE localhost:8080/api/generic/1?typeId=-1431066120
+
+###

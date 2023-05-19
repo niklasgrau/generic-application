@@ -1,0 +1,18 @@
+### Get newest Metadata (not modified)
+GET http://localhost:8080/api/metadata/-121008451
+
+
+### Get newest Metadata
+GET http://localhost:8080/api/metadata
+Accept: application/json
+
+
+### Create new Metadata
+POST http://localhost:8080/api/metadata
+Content-Type: application/octet-stream
+
+< ../../de/fhswf/genericapplication/metadata/Metadata.xml
+
+
+### Delete Metadata
+DELETE http://localhost:8080/api/metadata/-121008451

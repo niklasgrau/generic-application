@@ -1,0 +1,32 @@
+### GET Sample File
+
+GET http://localhost:8080/api/storage?typeId=-1336857774&id=1&propertyName=file
+
+### POST Sample File
+
+POST http://localhost:8080/api/storage
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="typeId"
+Content-Type: text/plain
+
+-1336857774
+--WebAppBoundary
+Content-Disposition: form-data; name="id"
+Content-Type: text/plain
+
+1
+--WebAppBoundary
+Content-Disposition: form-data; name="propertyName"
+Content-Type: text/plain
+
+file
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="sample.pdf"
+
+< ./de/fhswf/genericapplication/database/dummy.pdf
+--WebAppBoundary--
+
+### DELETE Sample File
+GET http://localhost:8080/api/storage?typeId=-1336857774&id=1&propertyName=file

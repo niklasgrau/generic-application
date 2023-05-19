@@ -1,0 +1,92 @@
+{
+  "culture": {
+    "dateFormat": "DD.MM.YYYY",
+    "dateTimeFormat": "DD.MM.YYYY HH:mm",
+    "locale": "de-DE",
+    "true": "ja",
+    "false": "nein"
+  },
+  "nav": {
+    "home": "Einstieg",
+    "typeRegistry": "Typenregister",
+    "databaseConsole": "Datenbankkonsole",
+    "login": "Anmelden",
+    "register": "Registrieren"
+  },
+  "listView": {
+    "actions": "Aktionen",
+    "emptyState": "Keine Daten vorhanden.",
+    "filter": {
+      "label": "Filter",
+      "where": "Wo",
+      "emptyState": "Es wurden noch keine Filter hinzugefügt.",
+      "value": {
+        "placeholder": "Vergleichswert"
+      },
+      "actions": {
+        "add": {
+          "filter": "Filter hinzufügen",
+          "filterBlock": "Filtergruppe hinzufügen"
+        },
+        "remove": {
+          "filter": "Filter löschen",
+          "filterBlock": "Filtergruppe löschen"
+        },
+        "reset": "Filter zurücksetzen",
+        "search": "Filter anwenden"
+      },
+      "operators": {
+        "like": "enthält",
+        "not_like": "enthält nicht",
+        "equal": "ist gleich",
+        "not_equal": "ist nicht gleich",
+        "greater_than": "größer als",
+        "greater_or_equal": "größer als oder gleich",
+        "less_than": "kleiner als",
+        "less_or_equal": "kleiner als oder gleich",
+        "is_true": "ist wahr",
+        "is_false": "ist falsch",
+        "or": "oder",
+        "and": "und"
+      }
+    },
+    "sort": {
+      "ascending": "Aufsteigend sortieren",
+      "descending": "Absteigend sortieren",
+      "reset": "Sortierung zurücksetzen"
+    },
+    "paging": {
+      "pageSize": "Anzahl Einträge"
+    }
+  },
+  "actions": {
+    "create": "{entity} anlegen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "link": "{entity} hinzufügen",
+    "linkSimple": "Hinzufügen",
+    "select": "{entity} auswählen",
+    "cancel": "Abbrechen",
+    "apply": "Änderungen übernehmen"
+  },
+  "components": {
+    "validation": {
+      "required": "Pflichtfeld"
+    },
+    "fileInput": {
+      "noContent": "Keine Datei vorhanden",
+      "download": "Datei herunterladen"
+    },
+    "association": {
+      "noData": "Kein Suchergebnis",
+      "hint": "Durchsuchbare Felder: {fields}",
+      "changes": "Änderungen ({changes})"
+    }
+  },
+  "messages": {
+    "updated": "{entity} wurde erfolgreich aktualisiert.",
+    "created": "{entity} wurde erfolgreich erstellt.",
+    "deleted": "{entity} wurde erfolgreich gelöscht.",
+    "formInvalid": "Formular enthält inkorrekte Angabe. Bitte überprüfen Sie Ihre Eingaben."
+  }
+}

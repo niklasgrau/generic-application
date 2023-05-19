@@ -1,0 +1,129 @@
+### Get Offer
+POST localhost:8080/api/generic/1?typeId=-1336857774
+Content-Type: application/json
+
+{
+  "typeId": -1336857774,
+  "id": 1,
+  "propertySelection": [
+    "date",
+    "number",
+    "createdAt",
+    "file",
+    "contact",
+    "description",
+    "validUntil",
+    "sum",
+    "designation",
+    "type",
+    "status",
+    "updatedAt"
+  ]
+}
+
+### Get all Offer
+POST localhost:8080/api/generic/list?typeId=-1336857774
+Content-Type: application/json
+
+{
+  "typeId": -1336857774,
+  "propertySelection": [
+    "date",
+    "number",
+    "createdAt",
+    "file",
+    "contact",
+    "description",
+    "validUntil",
+    "sum",
+    "designation",
+    "type",
+    "status",
+    "updatedAt"
+  ],
+  "page": 1,
+  "pageSize": 50
+}
+
+### Create Offer
+POST localhost:8080/api/generic
+Content-Type: application/json
+
+{
+  "entity": {
+    "typeId": -1336857774,
+    "properties": {
+      "number": "new-number",
+      "sum": 1,
+      "date": "1111-11-11T11:11:11.111+00:00",
+      "designation": "new-designation",
+      "description": "new-description",
+      "validUntil": "2222-11-11T11:11:11.111+00:00",
+      "status": "CREATED",
+      "type": "FIXED_PRICE",
+      "contact": {
+        "typeId": -1299381124,
+        "id": 1
+      }
+    }
+  },
+  "associationStates": {
+    "orders": {
+      "connected": [
+        {
+          "typeId": -1336502204,
+          "id": 1
+        }
+      ],
+      "disconnected": [],
+      "deleted": []
+    }
+  }
+}
+
+### Update Offer
+PUT localhost:8080/api/generic/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "entity": {
+    "typeId": -1336857774,
+    "properties": {
+      "number": "updated-number",
+      "sum": 999,
+      "date": "0101-01-01T01:01:01.010+00:00",
+      "designation": "updated-designation",
+      "description": "updated-description",
+      "validUntil": "0101-01-01T01:01:01.010+00:00",
+      "status": "WAITING_FOR_APPROVAL",
+      "type": "SERVICE",
+      "contact": {
+        "typeId": -1299381124,
+        "id": 2
+      }
+    }
+  },
+  "associationStates": {
+    "orders": {
+      "connected": [
+        {
+          "typeId": -1336502204,
+          "id": 2
+        }
+      ],
+      "disconnected": [
+        {
+          "typeId": -1336502204,
+          "id": 1
+        }
+      ],
+      "deleted": []
+    }
+  }
+}
+
+### Delete Offer
+DELETE localhost:8080/api/generic/1?typeId=-1336857774
+
+###

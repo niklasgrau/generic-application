@@ -1,0 +1,107 @@
+### Get Order
+POST localhost:8080/api/generic/1?typeId=-1336502204
+Content-Type: application/json
+
+{
+  "typeId": -1336502204,
+  "id": 1,
+  "propertySelection": [
+    "offer",
+    "createdAt",
+    "externalOrderNumber",
+    "receivedAt",
+    "updatedAt"
+  ]
+}
+
+### Get all Orders
+POST localhost:8080/api/generic/list?typeId=-1336502204
+Content-Type: application/json
+
+{
+  "typeId": -1336502204,
+  "propertySelection": [
+    "offer",
+    "createdAt",
+    "externalOrderNumber",
+    "receivedAt",
+    "updatedAt"
+  ],
+  "page": 1,
+  "pageSize": 50
+}
+
+### Create Order
+POST localhost:8080/api/generic
+Content-Type: application/json
+
+{
+  "entity": {
+    "typeId": -1336502204,
+    "properties": {
+      "offer": {
+        "typeId": -1336857774,
+        "id": 1
+      },
+      "externalOrderNumber": "1111-11",
+      "receivedAt": "1111-11-11T11:11:11.111+00:00"
+    }
+  },
+  "associationStates": {
+    "projects": {
+      "connected": [
+        {
+          "typeId": 714405519,
+          "id": 1
+        },
+        {
+          "typeId": 714405519,
+          "id": 2
+        }
+      ],
+      "disconnected": [],
+      "deleted": []
+    }
+  }
+}
+
+### Update Order
+PUT localhost:8080/api/generic/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "entity": {
+    "typeId": -1336502204,
+    "properties": {
+      "offer": {
+        "typeId": -1336857774,
+        "id": 2
+      },
+      "externalOrderNumber": "2222-22",
+      "receivedAt": "1212-12-12T12:12:12.121+00:00"
+    }
+  },
+  "associationStates": {
+    "projects": {
+      "connected": [
+        {
+          "typeId": 714405519,
+          "id": 2
+        }
+      ],
+      "disconnected": [
+        {
+          "typeId": 714405519,
+          "id": 1
+        }
+      ],
+      "deleted": []
+    }
+  }
+}
+
+### Delete Order
+DELETE localhost:8080/api/generic/1?typeId=-1336502204
+
+###

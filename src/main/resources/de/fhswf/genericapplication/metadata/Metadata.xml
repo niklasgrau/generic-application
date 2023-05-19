@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:application name="application" version="100" label="[DE:ERP-System][EN:ERP system]"
+                  xmlns:core="core"
+                  xmlns:view="view"
+                  xmlns:uiFactory="uiFactory"
+                  xmlns:formatterFactory="formatterFactory">
+    <core:subsystems>
+        <core:subsystem name="offer-management" label="[DE:Angebotsmanagement][EN:Offer management]"
+                        icon="mdi-folder-table"/>
+        <core:subsystem name="project-management" label="[DE:Projektmanagement][EN:Project management]"
+                        icon="mdi-clipboard-text-multiple"/>
+        <core:subsystem name="crm" label="[DE:CRM][EN:CRM]" icon="mdi-account-group"/>
+    </core:subsystems>
+
+    <core:navigation>
+        <core:navigationItem name="offer"/>
+        <core:navigationItem name="order"/>
+        <core:navigationItem name="project"/>
+        <core:navigationItem name="workPackage"/>
+        <core:navigationItem name="expenditure"/>
+        <core:navigationItem name="employee"/>
+        <core:navigationItem name="juristicPerson"/>
+        <core:navigationItem name="naturalPerson"/>
+    </core:navigation>
+
+    <core:listViews>
+        <view:listView name="offer">
+            <view:columns>
+                <view:column name="number" width="20"/>
+                <view:column name="designation" width="40"/>
+                <view:column name="sum" width="20" uiFactory:name="CurrencyNumberInput"
+                             formatterFactory:name="NumberFormatter" formatterFactory:style="currency"
+                             formatterFactory:currency="EUR" formatterFactory:locales="de-DE"/>
+                <view:column name="date" width="20" uiFactory:name="DateTimeInput"
+                             formatterFactory:name="DateFormatter"/>
+            </view:columns>
+        </view:listView>
+        <view:listView name="order">
+            <view:columns>
+                <view:column name="externalOrderNumber" width="45"/>
+                <view:column name="receivedAt" width="45" uiFactory:name="DateTimeInput"
+                             formatterFactory:name="DateFormatter"/>
+            </view:columns>
+        </view:listView>
+        <view:listView name="project">
+            <view:columns>
+                <view:column name="number" width="15"/>
+                <view:column name="name" width="45"/>
+                <view:column name="startDate" width="20" uiFactory:name="DateTimeInput"
+                             formatterFactory:name="DateFormatter"/>
+                <view:column name="endDate" width="20" uiFactory:name="DateTimeInput"
+                             formatterFactory:name="DateFormatter"/>
+            </view:columns>
+        </view:listView>
+        <view:listView name="workPackage">
+            <view:columns>
+                <view:column name="ticketNumber" width="45"/>
+                <view:column name="designation" width="45"/>
+                <view:column name="type" width="45" uiFactory:name="EnumInput" formatterFactory:name="EnumFormatter"/>
+                <view:column name="customerBillable" width="45" formatterFactory:name="BooleanFormatter"/>
+            </view:columns>
+        </view:listView>
+        <view:listView name="expenditure">
+            <view:columns>
+                <view:column name="startDate" width="20" uiFactory:name="DateTimeInput"
+                             formatterFactory:name="DateFormatter"/>
+                <view:column name="endDate" width="20" uiFactory:name="DateTimeInput"
+                             formatterFactory:name="DateFormatter"/>
+                <view:column name="description" width="50" uiFactory:name="TextInput"/>
+                <view:column name="customerBillable" width="10" formatterFactory:name="BooleanFormatter"/>
+            </view:columns>
+        </view:listView>
+        <view:listView name="employee">
+            <view:columns>
+                <view:column name="firstName" width="45"/>
+                <view:column name="lastName" width="45"/>
+                <view:column name="email" width="45" formatterFactory:name="EMailFormatter"/>
+            </view:columns>
+        </view:listView>
+        <view:listView name="juristicPerson">
+            <view:columns>
+                <view:column name="name" width="45"/>
+                <view:column name="taxNumber" width="45"/>
+            </view:columns>
+        </view:listView>
+        <view:listView name="naturalPerson">
+            <view:columns>
+                <view:column name="name" width="45"/>
+                <view:column name="firstName" width="45"/>
+            </view:columns>
+        </view:listView>
+    </core:listViews>
+
+    <core:detailViews>
+        <view:detailView name="offer">
+            <view:group name="main" uiFactory:name="RowGroup">
+                <view:group name="main" uiFactory:name="TabContainerGroup">
+                    <view:group name="data" label="[DE:Daten][EN:Data]" uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="number" uiFactory:name="TextInput" colLG="3"/>
+                            <view:item name="date" uiFactory:name="DateTimeInput" colLG="3"/>
+                            <view:item name="validUntil" uiFactory:name="DateTimeInput" colLG="3"/>
+                            <view:item name="status" uiFactory:name="EnumInput" colLG="3"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="designation" uiFactory:name="TextInput" colLG="9"/>
+                            <view:item name="type" uiFactory:name="EnumInput" colLG="3"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="contact" uiFactory:name="ToOneAssociation" colLG="4"/>
+                            <view:item name="sum" uiFactory:name="CurrencyNumberInput" colLG="4"/>
+                            <view:item name="file" uiFactory:name="FileInput" colLG="4"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="description" uiFactory:name="MultilineTextInput"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:group uiFactory:name="CollapsableGroup" label="[DE:Dateivorschau][EN:File preview]">
+                                <view:item name="file" label="[DE:Dateivorschau][EN:File preview]"
+                                           uiFactory:height="425" uiFactory:width="100%" uiFactory:name="FilePreview"/>
+                            </view:group>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="createdAt" disabled="true" uiFactory:name="DateTimeInput" colLG="6"/>
+                            <view:item name="updatedAt" disabled="true" uiFactory:name="DateTimeInput" colLG="6"/>
+                        </view:group>
+                    </view:group>
+                    <view:group name="orders" label="[DE:Beauftragungen][EN:Orders]"
+                                uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="orders" uiFactory:name="ToManyTableAssociation"/>
+                        </view:group>
+                    </view:group>
+                    <!--                    <view:group name="foobar" label="[DE:MultiSelectComponent][EN:MultiSelectComponent]"-->
+                    <!--                                uiFactory:name="TabGroup">-->
+                    <!--                        <view:group uiFactory:name="RowGroup">-->
+                    <!--                            <view:item name="orders" uiFactory:name="ToManySelectAssociation"/>-->
+                    <!--                        </view:group>-->
+                    <!--                    </view:group>-->
+                </view:group>
+            </view:group>
+        </view:detailView>
+        <view:detailView name="order">
+            <view:group name="main" uiFactory:name="RowGroup">
+                <view:group name="main" uiFactory:name="TabContainerGroup">
+                    <view:group name="data" label="[DE:Daten][EN:Data]" uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="externalOrderNumber" uiFactory:name="TextInput" colLG="6"/>
+                            <view:item name="receivedAt" uiFactory:name="DateTimeInput" colLG="6"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="offer" uiFactory:name="ToOneAssociation" colLG="6"/>
+                            <view:item name="file" uiFactory:name="FileInput" colLG="6"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:group uiFactory:name="CollapsableGroup" label="[DE:Dateivorschau][EN:File preview]">
+                                <view:item name="file" label="[DE:Dateivorschau][EN:File preview]"
+                                           uiFactory:height="425" uiFactory:name="FilePreview"/>
+                            </view:group>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="createdAt" disabled="true" uiFactory:name="DateTimeInput" colLG="6"/>
+                            <view:item name="updatedAt" disabled="true" uiFactory:name="DateTimeInput" colLG="6"/>
+                        </view:group>
+                    </view:group>
+                    <view:group name="projects" label="[DE:Projekte][EN:Projects]" uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="projects" uiFactory:name="ToManyTableAssociation"/>
+                        </view:group>
+                    </view:group>
+                </view:group>
+            </view:group>
+        </view:detailView>
+        <view:detailView name="project">
+            <view:group name="main" uiFactory:name="RowGroup">
+                <view:group name="main" uiFactory:name="TabContainerGroup">
+                    <view:group name="data" label="[DE:Daten][EN:Data]" uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="name" uiFactory:name="TextInput" colLG="3"/>
+                            <view:item name="number" uiFactory:name="TextInput" colLG="3"/>
+                            <view:item name="startDate" uiFactory:name="DateTimeInput" colLG="3"/>
+                            <view:item name="endDate" uiFactory:name="DateTimeInput" colLG="3"/>
+                            <view:item name="manager" uiFactory:name="ToOneAssociation" colLG="3"/>
+                            <view:item name="deputyManager" uiFactory:name="ToOneAssociation" colLG="3"/>
+                            <view:item name="createdAt" disabled="true" uiFactory:name="DateTimeInput" colLG="3"/>
+                            <view:item name="updatedAt" disabled="true" uiFactory:name="DateTimeInput" colLG="3"/>
+                        </view:group>
+                    </view:group>
+                    <view:group name="orders" label="[DE:Aufträge][EN:Orders]" uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="orders" uiFactory:name="ToManyTableAssociation"/>
+                        </view:group>
+                    </view:group>
+                    <view:group name="workPackages" label="[DE:Arbeitspakete][EN:Work packages]"
+                                uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="workPackages" uiFactory:name="ToManyTableAssociation"/>
+                        </view:group>
+                    </view:group>
+                    <view:group name="expenditures" label="[DE:Aufwendungen][EN:Expenditures]"
+                                uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="expenditures" uiFactory:name="ToManyTableAssociation"/>
+                        </view:group>
+                    </view:group>
+                    <view:group name="team" label="[DE:Team][EN:Team]" uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="team" uiFactory:name="ToManyTableAssociation"/>
+                        </view:group>
+                    </view:group>
+                </view:group>
+            </view:group>
+        </view:detailView>
+        <view:detailView name="workPackage">
+            <view:group name="main" uiFactory:name="RowGroup">
+                <view:group name="main" uiFactory:name="TabContainerGroup">
+                    <view:group name="data" label="[DE:Daten][EN:Data]" uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="designation" uiFactory:name="TextInput" colLG="4"/>
+                            <view:item name="ticketNumber" uiFactory:name="TextInput" colLG="4"/>
+                            <view:item name="type" uiFactory:name="EnumInput" colLG="4"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="project" uiFactory:name="ToOneAssociation" colLG="6"/>
+                            <view:item name="customerBillable" uiFactory:name="ToggleInput" colLG="6"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="description" uiFactory:name="MultilineTextInput"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="createdAt" disabled="true" uiFactory:name="DateTimeInput" colLG="6"/>
+                            <view:item name="updatedAt" disabled="true" uiFactory:name="DateTimeInput" colLG="6"/>
+                        </view:group>
+                    </view:group>
+                    <view:group name="expenditures" label="[DE:Aufwendungen][EN:Expenditures]"
+                                uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="expenditures" uiFactory:name="ToManyTableAssociation"/>
+                        </view:group>
+                    </view:group>
+                </view:group>
+            </view:group>
+        </view:detailView>
+        <view:detailView name="expenditure">
+            <view:group name="main" uiFactory:name="RowGroup">
+                <view:group name="main" uiFactory:name="TabContainerGroup">
+                    <view:group name="data" label="[DE:Daten][EN:Data]" uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="startDate" uiFactory:name="DateTimeInput" colLG="4"/>
+                            <view:item name="endDate" uiFactory:name="DateTimeInput" colLG="4"/>
+                            <view:item name="customerBillable" uiFactory:name="ToggleInput" colLG="4"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="description" uiFactory:name="MultilineTextInput"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="employee" uiFactory:name="ToOneAssociation" colLG="4"/>
+                            <view:item name="project" uiFactory:name="ToOneAssociation" colLG="4"/>
+                            <view:item name="workPackage" uiFactory:name="ToOneAssociation" colLG="4"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="createdAt" disabled="true" uiFactory:name="DateTimeInput" colLG="6"/>
+                            <view:item name="updatedAt" disabled="true" uiFactory:name="DateTimeInput" colLG="6"/>
+                        </view:group>
+                    </view:group>
+                </view:group>
+            </view:group>
+        </view:detailView>
+        <view:detailView name="employee">
+            <view:group name="main" uiFactory:name="RowGroup">
+                <view:group name="main" uiFactory:name="TabContainerGroup">
+                    <view:group name="data" label="[DE:Daten][EN:Data]" uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="email" uiFactory:name="TextInput"/>
+                            <view:item name="password" uiFactory:name="PasswordInput"/>
+                            <view:item name="firstName" uiFactory:name="TextInput"/>
+                            <view:item name="lastName" uiFactory:name="TextInput"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="createdAt" disabled="true" uiFactory:name="DateTimeInput" colLG="6"/>
+                            <view:item name="updatedAt" disabled="true" uiFactory:name="DateTimeInput" colLG="6"/>
+                        </view:group>
+                    </view:group>
+                    <view:group name="managerProjects" label="[DE:Teamleiter Projekte][EN:Manager projects]"
+                                uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="managerProjects" uiFactory:name="ToManyTableAssociation"/>
+                        </view:group>
+                    </view:group>
+                    <view:group name="deputyManagerProjects"
+                                label="[DE:Stellv. Teamleiter Projekte][EN:Deputy manager project]"
+                                uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="deputyManagerProjects"
+                                       uiFactory:name="ToManyTableAssociation"/>
+                        </view:group>
+                    </view:group>
+                    <view:group name="teamProjects" label="[DE:Projekte][EN:Projects]"
+                                uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="teamProjects" uiFactory:name="ToManyTableAssociation"/>
+                        </view:group>
+                    </view:group>
+                    <view:group name="expenditures" label="[DE:Aufwendungen][EN:Expenditures]"
+                                uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="expenditures" uiFactory:name="ToManyTableAssociation"/>
+                        </view:group>
+                    </view:group>
+                </view:group>
+            </view:group>
+        </view:detailView>
+        <view:detailView name="juristicPerson">
+            <view:group name="main" uiFactory:name="RowGroup">
+                <view:group name="main" uiFactory:name="TabContainerGroup">
+                    <view:group name="properties" label="[DE:Daten][EN:Data]" uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="name" uiFactory:name="TextInput"/>
+                            <view:item name="taxNumber" uiFactory:name="TextInput"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="createdAt" disabled="true" uiFactory:name="DateTimeInput" colLG="6"/>
+                            <view:item name="updatedAt" disabled="true" uiFactory:name="DateTimeInput" colLG="6"/>
+                        </view:group>
+                    </view:group>
+                    <view:group name="offers" label="[DE:Angebote][EN:Offers]" uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="offers" uiFactory:name="ToManyTableAssociation"/>
+                        </view:group>
+                    </view:group>
+                </view:group>
+            </view:group>
+        </view:detailView>
+        <view:detailView name="naturalPerson">
+            <view:group name="main" uiFactory:name="RowGroup">
+                <view:group name="main" uiFactory:name="TabContainerGroup">
+                    <view:group name="properties" label="[DE:Daten][EN:Data]" uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="firstName" uiFactory:name="TextInput"/>
+                            <view:item name="name" uiFactory:name="TextInput"/>
+                        </view:group>
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="createdAt" disabled="true" uiFactory:name="DateTimeInput" colLG="6"/>
+                            <view:item name="updatedAt" disabled="true" uiFactory:name="DateTimeInput" colLG="6"/>
+                        </view:group>
+                    </view:group>
+                    <view:group name="offers" label="[DE:Angebote][EN:Offers]" uiFactory:name="TabGroup">
+                        <view:group uiFactory:name="RowGroup">
+                            <view:item name="offers" uiFactory:name="ToManyTableAssociation"/>
+                        </view:group>
+                    </view:group>
+                </view:group>
+            </view:group>
+        </view:detailView>
+    </core:detailViews>
+
+    <core:types>
+        <core:type name="offer"
+                   typeId="-1336857774"
+                   label="[DE:Angebot][EN:Offer]"
+                   labelPlural="[DE:Angebote][EN:Offers]"
+                   icon="mdi-file-document"
+                   objectStringifier="{{number}} - {{designation}}"
+                   subsystem="offer-management">
+            <core:attributes>
+                <core:attribute name="number" label="[DE:Nummer][EN:Number]" required="true" dataType="String">
+                    <core:validators>
+                        <core:validator
+                                expression="^[0-9]+-[0-9]+$"
+                                errorMessage="[DE:Eingabe entspricht nicht dem Muster 'Nummer-Nummer'][EN:Input does not match the pattern 'number-number']"/>
+                    </core:validators>
+                </core:attribute>
+                <core:attribute name="sum" label="[DE:Summe][EN:Sum]" required="true" dataType="Number"/>
+                <core:attribute name="date" label="[DE:Datum][EN:Date]" required="true" dataType="Date"/>
+                <core:attribute name="designation" label="[DE:Bezeichnung][EN:Designation]" required="true"
+                                dataType="String"/>
+                <core:attribute name="validUntil" label="[DE:Gültig bis][EN:Valid until]" dataType="Date"/>
+                <core:attribute name="file" label="[DE:Datei][EN:File]" dataType="File"/>
+                <core:attribute name="description" label="[DE:Beschreibung][EN:Description]" dataType="String"/>
+                <core:attribute name="status" label="[DE:Status][EN:Status]" required="true" values="offer-status"
+                                dataType="Enum"/>
+                <core:attribute name="type" label="[DE:Typ][EN:Type]" required="true" values="project-type"
+                                dataType="Enum"/>
+                <core:attribute name="createdAt" label="[DE:Erstellt am][EN:Created at]" dataType="Date"/>
+                <core:attribute name="updatedAt" label="[DE:Aktualisiert am][EN:Updated at]" dataType="Date"/>
+            </core:attributes>
+            <core:associations>
+                <core:association name="orders" label="[DE:Beauftragungen][EN:Assignments]" inverseOf="offer"
+                                  type="order" cardinality="many"/>
+                <core:association name="contact" label="[DE:Kontakt][EN:Contact]" required="true" inverseOf="offers"
+                                  type="contact" cardinality="one"/>
+            </core:associations>
+        </core:type>
+        <core:type name="order"
+                   typeId="-1336502204"
+                   label="[DE:Auftrag][EN:Order]"
+                   labelPlural="[DE:Aufträge][EN:Orders]"
+                   icon="mdi-folder-pound"
+                   objectStringifier="{{externalOrderNumber}}"
+                   subsystem="offer-management">
+            <core:attributes>
+                <core:attribute name="externalOrderNumber" label="[DE:Nummer][EN:Number]"
+                                required="true" dataType="String"/>
+                <core:attribute name="receivedAt" label="[DE:Erhalten am][EN:Received at]"
+                                required="true" dataType="Date"/>
+                <core:attribute name="file" label="[DE:Datei][EN:File]" dataType="File"/>
+                <core:attribute name="createdAt" label="[DE:Erstellt am][EN:Created at]" dataType="Date"/>
+                <core:attribute name="updatedAt" label="[DE:Aktualisiert am][EN:Updated at]" dataType="Date"/>
+            </core:attributes>
+            <core:associations>
+                <core:association name="offer" label="[DE:Angebot][EN:Offer]" inverseOf="offer"
+                                  type="offer" cardinality="one" required="true"/>
+                <core:association name="projects" label="[DE:Projekte][EN:Projects]" inverseOf="orders"
+                                  type="project" cardinality="many"/>
+            </core:associations>
+        </core:type>
+        <core:type name="project"
+                   typeId="714405519"
+                   label="[DE:Projekt][EN:Project]"
+                   labelPlural="[DE:Projekte][EN:Projects]"
+                   icon="mdi-clipboard-text"
+                   objectStringifier="{{number}} - {{name}}"
+                   subsystem="project-management">
+            <core:attributes>
+                <core:attribute name="startDate" label="[DE:Startdatum][EN:Start date]" dataType="Date"/>
+                <core:attribute name="endDate" label="[DE:Enddatum][EN:End date]" dataType="Date"/>
+                <core:attribute name="name" label="[DE:Name][EN:Name]" required="true" dataType="String"/>
+                <core:attribute name="number" label="[DE:Nummer][EN:Number]" required="true" dataType="String"/>
+                <core:attribute name="createdAt" label="[DE:Erstellt am][EN:Created at]" dataType="Date"/>
+                <core:attribute name="updatedAt" label="[DE:Aktualisiert am][EN:Updated at]" dataType="Date"/>
+            </core:attributes>
+            <core:associations>
+                <core:association name="orders" label="[DE:Aufträge][EN:Orders]" inverseOf="projects" type="order"
+                                  cardinality="many"/>
+                <core:association name="workPackages" label="[DE:Arbeitspakete][EN:Work packages]" inverseOf="project"
+                                  type="workPackage" cardinality="many"/>
+                <core:association name="expenditures" label="[DE:Aufwendungen][EN:Expenditures]" inverseOf="project"
+                                  type="expenditure" cardinality="many"/>
+                <core:association name="manager" label="[DE:Teamleiter][EN:Manager]" inverseOf="managerProjects"
+                                  type="employee" cardinality="one" required="true"/>
+                <core:association name="deputyManager" label="[DE:Stellvertretender Teamleiter][EN:Deputy manager]"
+                                  inverseOf="deputyManagerProjects" type="employee" cardinality="one"/>
+                <core:association name="team" label="[DE:Team][EN:Team]" inverseOf="teamProjects" type="employee"
+                                  cardinality="many"/>
+            </core:associations>
+        </core:type>
+        <core:type name="workPackage"
+                   typeId="1376919659"
+                   label="[DE:Arbeitspaket][EN:Work package]"
+                   labelPlural="[DE:Arbeitspakete][EN:Work packages]"
+                   icon="mdi-package"
+                   objectStringifier="{{ticketNumber}} - {{designation}}"
+                   subsystem="project-management">
+            <core:attributes>
+                <core:attribute name="description" label="[DE:Beschreibung][EN:Description]" dataType="String"/>
+                <core:attribute name="designation" label="[DE:Bezeichnung][EN:Designation]" required="true"
+                                dataType="String"/>
+                <core:attribute name="ticketNumber" label="[DE:Ticketnummer][EN:Ticket number]" required="true"
+                                dataType="String"/>
+                <core:attribute name="customerBillable" label="[DE:Abrechenbar][EN:Billable]" dataType="Boolean"/>
+                <core:attribute name="type" label="[DE:Typ][EN:Type]" values="work-package-type" dataType="Enum"/>
+                <core:attribute name="createdAt" label="[DE:Erstellt am][EN:Created at]" dataType="Date"/>
+                <core:attribute name="updatedAt" label="[DE:Aktualisiert am][EN:Updated at]" dataType="Date"/>
+            </core:attributes>
+            <core:associations>
+                <core:association name="project" label="[DE:Projekt][EN:Project]" inverseOf="workPackages"
+                                  type="project" cardinality="one" required="true"/>
+                <core:association name="expenditures" label="[DE:Aufwendungen][EN:Expenditures]"
+                                  inverseOf="workPackage" type="expenditure" cardinality="many"/>
+            </core:associations>
+        </core:type>
+        <core:type name="expenditure"
+                   typeId="288688629"
+                   label="[DE:Aufwendung][EN:Expenditure]"
+                   labelPlural="[DE:Aufwendungen][EN:Expenditures]"
+                   icon="mdi-clipboard-text-clock"
+                   objectStringifier="{{description}}"
+                   subsystem="project-management">
+            <core:attributes>
+                <core:attribute name="startDate" label="[DE:Startdatum][EN:Start date]" dataType="Date"
+                                required="true"/>
+                <core:attribute name="endDate" label="[DE:Enddatum][EN:End date]" dataType="Date"/>
+                <core:attribute name="description" label="[DE:Beschreibung][EN:Description]" dataType="String"
+                                required="true"/>
+                <core:attribute name="customerBillable" label="[DE:Abrechenbar][EN:Billable]" dataType="Boolean"/>
+                <core:attribute name="createdAt" label="[DE:Erstellt am][EN:Created at]" dataType="Date"/>
+                <core:attribute name="updatedAt" label="[DE:Aktualisiert am][EN:Updated at]" dataType="Date"/>
+            </core:attributes>
+            <core:associations>
+                <core:association name="employee" label="[DE:Mitarbeiter][EN:Employee]" inverseOf="expenditures"
+                                  type="employee" cardinality="one" required="true"/>
+                <core:association name="project" label="[DE:Projekt][EN:Project]" inverseOf="expenditures"
+                                  type="project" cardinality="one" required="true"/>
+                <core:association name="workPackage" label="[DE:Arbeitspaket][EN:Work package]"
+                                  inverseOf="expenditures" type="workPackage" cardinality="one"/>
+            </core:associations>
+        </core:type>
+        <core:type name="user"
+                   typeId="-42933227"
+                   label="[DE:Benutzer][EN:User]"
+                   labelPlural="[DE:Benutzer][EN:Users]"
+                   icon="mdi-account"
+                   objectStringifier="{{lastName}}, {{firstName}}">
+            <core:attributes>
+                <core:attribute name="email" label="[DE:E-Mail][EN:E-Mail]" dataType="String"/>
+                <core:attribute name="password" label="[DE:Passwort][EN:Password]" dataType="String"/>
+                <core:attribute name="firstName" label="[DE:Vorname][EN:First name]" dataType="String"/>
+                <core:attribute name="lastName" label="[DE:Nachname][EN:Last name]" dataType="String"/>
+                <core:attribute name="createdAt" label="[DE:Erstellt am][EN:Created at]" dataType="Date"/>
+                <core:attribute name="updatedAt" label="[DE:Aktualisiert am][EN:Updated at]" dataType="Date"/>
+            </core:attributes>
+        </core:type>
+        <core:type name="employee"
+                   typeId="-1431066120"
+                   label="[DE:Mitarbeiter][EN:Employee]"
+                   labelPlural="[DE:Mitarbeiter][EN:Employees]"
+                   icon="mdi-account-multiple"
+                   base="User"
+                   objectStringifier="{{lastName}}, {{firstName}}">
+            <core:attributes>
+                <core:attribute name="email" label="[DE:E-Mail][EN:E-Mail]" dataType="String" required="true"/>
+                <core:attribute name="password" label="[DE:Passwort][EN:Password]" dataType="String" required="true"/>
+                <core:attribute name="firstName" label="[DE:Vorname][EN:First name]" dataType="String" required="true"/>
+                <core:attribute name="lastName" label="[DE:Nachname][EN:Last name]" dataType="String" required="true"/>
+                <core:attribute name="createdAt" label="[DE:Erstellt am][EN:Created at]" dataType="Date"/>
+                <core:attribute name="updatedAt" label="[DE:Aktualisiert am][EN:Updated at]" dataType="Date"/>
+            </core:attributes>
+            <core:associations>
+                <core:association name="managerProjects" label="[DE:Teamleiter Projekte][EN:Manager projects]"
+                                  inverseOf="manager" type="project" cardinality="many"/>
+                <core:association name="deputyManagerProjects"
+                                  label="[DE:Stellv. Teamleiter Projekte][EN:Deputy manager project]"
+                                  inverseOf="deputyManager" type="project" cardinality="many"/>
+                <core:association name="teamProjects" label="[DE:Projekte][EN:Projects]" inverseOf="team"
+                                  type="project" cardinality="many"/>
+                <core:association name="expenditures" label="[DE:Aufwendungen][EN:Expenditures]"
+                                  inverseOf="employee" type="expenditure" cardinality="many"/>
+            </core:associations>
+        </core:type>
+        <core:type name="contact"
+                   typeId="1975242646"
+                   label="[DE:Kontakt][EN:Contact]"
+                   labelPlural="[DE:Kontakte][EN:Contacts]"
+                   icon="mdi-domain"
+                   objectStringifier="{{name}}"
+                   subsystem="crm">
+
+            <core:attributes>
+                <core:attribute name="name" label="[DE:Name][EN:Name]" required="true" dataType="String"/>
+                <core:attribute name="createdAt" label="[DE:Erstellt am][EN:Created at]" dataType="Date"/>
+                <core:attribute name="updatedAt" label="[DE:Aktualisiert am][EN:Updated at]" dataType="Date"/>
+            </core:attributes>
+
+            <core:associations>
+                <core:association name="offers" label="[DE:Angebote][EN:Offers]" inverseOf="contact"/>
+            </core:associations>
+        </core:type>
+        <core:type name="juristicPerson"
+                   typeId="-1299381124"
+                   label="[DE:Juristische Person][EN:Juristic person]"
+                   labelPlural="[DE:Juristische Personen][EN:Juristic persons]"
+                   icon="mdi-domain"
+                   objectStringifier="{{name}}"
+                   base="contact"
+                   subsystem="crm">
+
+            <core:attributes>
+                <core:attribute name="name" label="[DE:Name][EN:Name]" required="true" dataType="String"/>
+                <core:attribute name="taxNumber" label="[DE:Steuernummer][EN:Tax number]" required="true"
+                                dataType="String"/>
+                <core:attribute name="createdAt" label="[DE:Erstellt am][EN:Created at]" dataType="Date"/>
+                <core:attribute name="updatedAt" label="[DE:Aktualisiert am][EN:Updated at]" dataType="Date"/>
+            </core:attributes>
+
+            <core:associations>
+                <core:association name="offers" cardinality="many" label="[DE:Angebote][EN:Offers]"
+                                  inverseOf="contact" type="offer"/>
+            </core:associations>
+        </core:type>
+        <core:type name="naturalPerson"
+                   typeId="1538971604"
+                   label="[DE:Natürliche Person][EN:Natural person]"
+                   labelPlural="[DE:Natürliche Personen][EN:Natural persons]"
+                   icon="mdi-account"
+                   objectStringifier="{{name}}, {{firstname}}"
+                   base="contact"
+                   subsystem="crm">
+
+            <core:attributes>
+                <core:attribute name="name" label="[DE:Name][EN:Name]" required="true" dataType="String"/>
+                <core:attribute name="firstName" label="[DE:Vorname][EN:First name]" required="true" dataType="String"/>
+                <core:attribute name="createdAt" label="[DE:Erstellt am][EN:Created at]" dataType="Date"/>
+                <core:attribute name="updatedAt" label="[DE:Aktualisiert am][EN:Updated at]" dataType="Date"/>
+            </core:attributes>
+
+            <core:associations>
+                <core:association name="offers" cardinality="many" label="[DE:Angebote][EN:Offers]"
+                                  inverseOf="contact" type="offer"/>
+            </core:associations>
+        </core:type>
+    </core:types>
+
+    <core:enums>
+        <core:enum name="offer-status" label="[DE:Angebotsstatus][EN:Offer status]">
+            <core:value name="CREATED" label="[DE:Erstellt][EN:Created]"/>
+            <core:value name="WAITING_FOR_APPROVAL" label="[DE:Wartet auf Bestätigung][EN:Waiting for Approval]"/>
+            <core:value name="SENT" label="[DE:Gesendet][EN:Sent]"/>
+            <core:value name="DECLINED" label="[DE:Abgelehnt][EN:Declined]"/>
+            <core:value name="EXPIRED" label="[DE:Abgelaufen][EN:Expired]"/>
+        </core:enum>
+        <core:enum name="project-type" label="[DE:Projektart][EN:Project type]">
+            <core:value name="FIXED_PRICE" label="[DE:Festpreis][EN:Fixed price]"/>
+            <core:value name="TIME_AND_MATERIAL" label="[DE:Zeit und Material][EN:Time and Material]"/>
+            <core:value name="SERVICE" label="[DE:Service][EN:Service]"/>
+        </core:enum>
+        <core:enum name="work-package-type" label="[DE:Arbeitspakettyp][EN:Work package type]">
+            <core:value name="DISCUSSION" label="[DE:Diskussion][EN:Discussion]"/>
+            <core:value name="DEVELOPMENT" label="[DE:Entwicklung][EN:Development]"/>
+            <core:value name="CONSULTING" label="[DE:Beratung][EN:Consulting]"/>
+            <core:value name="SALES" label="[DE:Verkauf][EN:Sales]"/>
+            <core:value name="EDUCATION" label="[DE:Weiterbildung][EN:Education]"/>
+            <core:value name="ADMINISTRATION" label="[DE:Administration][EN:Administration]"/>
+        </core:enum>
+    </core:enums>
+
+</core:application>

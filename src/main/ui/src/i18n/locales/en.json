@@ -1,0 +1,92 @@
+{
+  "culture": {
+    "dateFormat": "YYYY-MM-DD",
+    "dateTimeFormat": "YYYY-MM-DD HH:mm",
+    "locale": "en-EN",
+    "true": "yes",
+    "false": "no"
+  },
+  "nav": {
+    "home": "Home",
+    "typeRegistry": "Type registry",
+    "databaseConsole": "Database console",
+    "login": "Login",
+    "register": "Register"
+  },
+  "listView": {
+    "actions": "Actions",
+    "emptyState": "No data available.",
+    "filter": {
+      "label": "Filter",
+      "where": "Where",
+      "emptyState": "No filters added yet.",
+      "value": {
+        "placeholder": "Reference value"
+      },
+      "actions": {
+        "add": {
+          "filter": "Add filter",
+          "filterBlock": "Add filter block"
+        },
+        "remove": {
+          "filter": "Remove filter",
+          "filterBlock": "Remove filter block"
+        },
+        "reset": "Reset filters",
+        "search": "Apply filters"
+      },
+      "operators": {
+        "like": "contains",
+        "not_like": "contains not",
+        "equal": "equals",
+        "not_equal": "equals not",
+        "greater_than": "greater than",
+        "greater_or_equal": "greater than or equal to",
+        "less_than": "less than",
+        "less_or_equal": "less than or equal to",
+        "is_true": "is true",
+        "is_false": "is false",
+        "or": "or",
+        "and": "and"
+      }
+    },
+    "sort": {
+      "ascending": "Sort ascending",
+      "descending": "Sort descending",
+      "reset": "Reset sorting"
+    },
+    "paging": {
+      "pageSize": "Entries per Page"
+    }
+  },
+  "actions": {
+    "create": "Create {entity}",
+    "save": "Save",
+    "delete": "Delete",
+    "link": "Add {entity}",
+    "linkSimple": "Add",
+    "select": "Select {entity}",
+    "cancel": "Cancel",
+    "apply": "Apply changes"
+  },
+  "components": {
+    "validation": {
+      "required": "Required"
+    },
+    "fileInput": {
+      "noContent": "No file available",
+      "download": "Download file"
+    },
+    "association": {
+      "noData": "No search result",
+      "hint": "Searchable Fields: {fields}",
+      "changes": "Changes ({changes})"
+    }
+  },
+  "messages": {
+    "updated": "{entity} was successfully updated.",
+    "created": "{entity} was successfully created.",
+    "deleted": "{entity} was successfully deleted.",
+    "formInvalid": "Form contains incorrect inputs. Please check your typings."
+  }
+}

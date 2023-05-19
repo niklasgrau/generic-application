@@ -1,0 +1,12 @@
+export enum FilterOperatorET {
+    LIKE = "LIKE",
+    NOT_LIKE = "NOT_LIKE",
+    EQUAL = "EQUAL",
+    NOT_EQUAL = "NOT_EQUAL",
+    GREATER_THAN = "GREATER_THAN",
+    GREATER_OR_EQUAL = "GREATER_OR_EQUAL",
+    LESS_THAN = "LESS_THAN",
+    LESS_OR_EQUAL = "LESS_OR_EQUAL",
+    IS_TRUE = "IS_TRUE",
+    IS_FALSE = "IS_FALSE"
+}

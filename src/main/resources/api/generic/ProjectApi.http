@@ -1,0 +1,121 @@
+### Get Project
+POST localhost:8080/api/generic/1?typeId=714405519
+Content-Type: application/json
+
+{
+  "typeId": 714405519,
+  "id": 1,
+  "propertySelection": [
+    "number",
+    "createdAt",
+    "manager",
+    "endDate",
+    "name",
+    "startDate",
+    "updatedAt"
+  ]
+}
+
+### Get all Project
+POST localhost:8080/api/generic/list?typeId=714405519
+Content-Type: application/json
+
+{
+  "typeId": 714405519,
+  "propertySelection": [
+    "number",
+    "createdAt",
+    "manager",
+    "endDate",
+    "name",
+    "startDate",
+    "updatedAt"
+  ],
+  "page": 1,
+  "pageSize": 50
+}
+
+### Create Project
+POST localhost:8080/api/generic
+Content-Type: application/json
+
+{
+  "entity": {
+    "typeId": 714405519,
+    "properties": {
+      "number": "0-0",
+      "manager": {
+        "typeId": -1431066120,
+        "id": 1
+      },
+      "endDate": "2222-12-12T12:12:12.121+00:00",
+      "name": "Consulting Microservice",
+      "startDate": "1111-11-11T11:11:11.111+00:00"
+    }
+  },
+  "associationStates": {
+    "orders": {
+      "associationName": "orders",
+      "typeId": -1336502204,
+      "origin": {
+        "typeId": 714405519,
+        "properties": {}
+      },
+      "connected": [
+        {
+          "typeId": -1336502204,
+          "id": 1
+        },
+        {
+          "typeId": -1336502204,
+          "id": 2
+        }
+      ],
+      "disconnected": [],
+      "deleted": []
+    }
+  }
+}
+
+### Update Project
+PUT localhost:8080/api/generic/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "entity": {
+    "typeId": 714405519,
+    "properties": {
+      "number": "99-99",
+      "manager": {
+        "typeId": -1431066120,
+        "id": 2
+      },
+      "endDate": "2000-02-02T02:02:02.020+00:00",
+      "name": "New name",
+      "startDate": "1212-12-12T12:12:12.121+00:00"
+    }
+  },
+  "associationStates": {
+    "orders": {
+      "connected": [
+        {
+          "typeId": -1336502204,
+          "id": 2
+        }
+      ],
+      "disconnected": [
+        {
+          "typeId": -1336502204,
+          "id": 1
+        }
+      ],
+      "deleted": []
+    }
+  }
+}
+
+### Delete Project
+DELETE localhost:8080/api/generic/1?typeId=714405519
+
+###

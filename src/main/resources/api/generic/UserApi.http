@@ -1,0 +1,72 @@
+### Get User
+POST localhost:8080/api/generic/1?typeId=-42933227
+Content-Type: application/json
+
+{
+  "typeId": -42933227,
+  "id": 1,
+  "propertySelection": [
+    "email",
+    "password",
+    "firstName",
+    "lastName",
+    "createdAt",
+    "updatedAt"
+  ]
+}
+
+### Get all User
+POST localhost:8080/api/generic/list?typeId=-42933227
+Content-Type: application/json
+
+{
+  "typeId": -42933227,
+  "propertySelection": [
+    "email",
+    "password",
+    "firstName",
+    "lastName",
+    "createdAt",
+    "updatedAt"
+  ],
+  "page": 1,
+  "pageSize": 50
+}
+
+### Create User
+POST localhost:8080/api/generic
+Content-Type: application/json
+
+{
+  "entity": {
+    "typeId": -42933227,
+    "properties": {
+      "email": "max.mustermann@mail.de",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "password": "123456"
+    }
+  }
+}
+
+### Update User
+PUT localhost:8080/api/generic/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "entity": {
+    "typeId": -42933227,
+    "properties": {
+      "email": "max.muster-mann@mail.de",
+      "firstName": "Neuer-Vorname",
+      "lastName": "Neuer-Nachname",
+      "password": "123456"
+    }
+  }
+}
+
+### Delete User
+DELETE localhost:8080/api/generic/1?typeId=-42933227
+
+###

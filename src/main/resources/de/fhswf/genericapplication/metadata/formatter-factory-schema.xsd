@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="formatterFactory"
+            targetNamespace="formatterFactory"
+            attributeFormDefault="qualified"
+            elementFormDefault="qualified">
+
+    <xsd:attributeGroup name="formatterFactoryAttrGroup">
+        <xsd:anyAttribute id="formatterFactoryParams" processContents="skip" namespace="##any">
+            <xsd:annotation>
+                <xsd:documentation>Parameters of the corresponding formatterFactory, for configuration.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:anyAttribute>
+    </xsd:attributeGroup>
+
+    <xsd:attribute name="name" type="xsd:string">
+        <xsd:annotation>
+            <xsd:documentation>Name of the factory, responsible for formatting values.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+</xsd:schema>

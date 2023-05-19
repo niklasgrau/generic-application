@@ -1,0 +1,33 @@
+### Get Contact
+POST localhost:8080/api/generic/1?typeId=1975242646
+Content-Type: application/json
+
+{
+  "typeId": 1975242646,
+  "id": 1,
+  "propertySelection": [
+    "name",
+    "updatedAt",
+    "createdAt"
+  ]
+}
+
+### Get all Contact
+POST localhost:8080/api/generic/list?typeId=1975242646
+Content-Type: application/json
+
+{
+  "typeId": 1975242646,
+  "propertySelection": [
+    "name",
+    "updatedAt",
+    "createdAt"
+  ],
+  "page": 1,
+  "pageSize": 50
+}
+
+### Delete Contact
+DELETE localhost:8080/api/generic/1?typeId=1975242646
+
+###

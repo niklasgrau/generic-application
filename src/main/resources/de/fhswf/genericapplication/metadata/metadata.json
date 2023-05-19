@@ -1,0 +1,3931 @@
+{
+  "name": "application",
+  "label": {
+    "labels": {
+      "DE": "ERP-System",
+      "EN": "ERP system"
+    }
+  },
+  "version": 100,
+  "subsystems": [
+    {
+      "name": "offer-management",
+      "label": {
+        "labels": {
+          "DE": "Angebotsmanagement",
+          "EN": "Offer management"
+        }
+      },
+      "icon": "mdi-folder-table",
+      "subsystems": []
+    },
+    {
+      "name": "crm",
+      "label": {
+        "labels": {
+          "DE": "CRM",
+          "EN": "CRM"
+        }
+      },
+      "icon": "mdi-account-group",
+      "subsystems": [
+        {
+          "name": "order",
+          "label": {
+            "labels": {
+              "DE": "Auftragsverwaltung",
+              "EN": "Order management"
+            }
+          },
+          "icon": null,
+          "subsystems": []
+        },
+        {
+          "name": "order",
+          "label": {
+            "labels": {
+              "DE": "Auftragsverwaltung",
+              "EN": "Order management"
+            }
+          },
+          "icon": null,
+          "subsystems": []
+        }
+      ]
+    }
+  ],
+  "navigation": [
+    {
+      "name": "offer",
+      "label": null
+    },
+    {
+      "name": "order",
+      "label": null
+    },
+    {
+      "name": "project",
+      "label": null
+    },
+    {
+      "name": "workPackage",
+      "label": null
+    },
+    {
+      "name": "expenditure",
+      "label": null
+    },
+    {
+      "name": "employee",
+      "label": null
+    },
+    {
+      "name": "juristicPerson",
+      "label": null
+    },
+    {
+      "name": "naturalPerson",
+      "label": null
+    }
+  ],
+  "types": [
+    {
+      "name": "offer",
+      "label": {
+        "labels": {
+          "DE": "Angebot",
+          "EN": "Offer"
+        }
+      },
+      "typeId": -1336857774,
+      "labelPlural": {
+        "labels": {
+          "DE": "Angebote",
+          "EN": "Offers"
+        }
+      },
+      "icon": "mdi-file-document",
+      "objectStringifier": "{{number}} ({{date}})",
+      "subsystem": "offer-management",
+      "base": "BaseEntity",
+      "singleton": false,
+      "attributes": [
+        {
+          "name": "number",
+          "label": {
+            "labels": {
+              "DE": "Nummer",
+              "EN": "Number"
+            }
+          },
+          "dataType": "String",
+          "required": true,
+          "validators": [
+            {
+              "errorMessage": {
+                "labels": {
+                  "DE": "Eingabe entspricht nicht 'Nummer-Nummer'",
+                  "EN": "Input does not match 'number-number'"
+                }
+              },
+              "expression": "^[0-9]+-[0-9]+$"
+            }
+          ],
+          "values": null
+        },
+        {
+          "name": "sum",
+          "label": {
+            "labels": {
+              "DE": "Summe",
+              "EN": "Sum"
+            }
+          },
+          "dataType": "Number",
+          "required": true,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "date",
+          "label": {
+            "labels": {
+              "DE": "Datum",
+              "EN": "Date"
+            }
+          },
+          "dataType": "Date",
+          "required": true,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "designation",
+          "label": {
+            "labels": {
+              "DE": "Bezeichnung",
+              "EN": "Designation"
+            }
+          },
+          "dataType": "String",
+          "required": true,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "validUntil",
+          "label": {
+            "labels": {
+              "DE": "Gültig bis",
+              "EN": "Valid until"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "file",
+          "label": {
+            "labels": {
+              "DE": "Datei",
+              "EN": "File"
+            }
+          },
+          "dataType": "File",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "description",
+          "label": {
+            "labels": {
+              "DE": "Beschreibung",
+              "EN": "Description"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "status",
+          "label": {
+            "labels": {
+              "DE": "Status",
+              "EN": "Status"
+            }
+          },
+          "dataType": "Enum",
+          "required": true,
+          "validators": [],
+          "values": "offer-status"
+        },
+        {
+          "name": "type",
+          "label": {
+            "labels": {
+              "DE": "Typ",
+              "EN": "Type"
+            }
+          },
+          "dataType": "Enum",
+          "required": true,
+          "validators": [],
+          "values": "project-type"
+        },
+        {
+          "name": "createdAt",
+          "label": {
+            "labels": {
+              "DE": "Erstellt am",
+              "EN": "Created at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "updatedAt",
+          "label": {
+            "labels": {
+              "DE": "Aktualisiert am",
+              "EN": "Updated at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        }
+      ],
+      "associations": [
+        {
+          "name": "orders",
+          "label": {
+            "labels": {
+              "DE": "Beauftragungen",
+              "EN": "Assignments"
+            }
+          },
+          "type": "order",
+          "required": false,
+          "inverseOf": "offer",
+          "validators": [],
+          "cardinality": "many"
+        },
+        {
+          "name": "contact",
+          "label": {
+            "labels": {
+              "DE": "Kontakt",
+              "EN": "Contact"
+            }
+          },
+          "type": "contact",
+          "required": true,
+          "inverseOf": "offers",
+          "validators": [],
+          "cardinality": "one"
+        }
+      ],
+      "operations": []
+    },
+    {
+      "name": "order",
+      "label": {
+        "labels": {
+          "DE": "Auftrag",
+          "EN": "Order"
+        }
+      },
+      "typeId": -1336502204,
+      "labelPlural": {
+        "labels": {
+          "DE": "Aufträge",
+          "EN": "Orders"
+        }
+      },
+      "icon": "mdi-folder-pound",
+      "objectStringifier": "{{externalOrderNumber}} {{receivedAt}}",
+      "subsystem": "offer-management",
+      "base": "BaseEntity",
+      "singleton": false,
+      "attributes": [
+        {
+          "name": "externalOrderNumber",
+          "label": {
+            "labels": {
+              "DE": "Nummer",
+              "EN": "Number"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "receivedAt",
+          "label": {
+            "labels": {
+              "DE": "Erhalten am",
+              "EN": "Received at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "file",
+          "label": {
+            "labels": {
+              "DE": "Datei",
+              "EN": "File"
+            }
+          },
+          "dataType": "File",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "createdAt",
+          "label": {
+            "labels": {
+              "DE": "Erstellt am",
+              "EN": "Created at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "updatedAt",
+          "label": {
+            "labels": {
+              "DE": "Aktualisiert am",
+              "EN": "Updated at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        }
+      ],
+      "associations": [
+        {
+          "name": "offer",
+          "label": {
+            "labels": {
+              "DE": "Angebot",
+              "EN": "Offer"
+            }
+          },
+          "type": "offer",
+          "required": false,
+          "inverseOf": "offer",
+          "validators": [],
+          "cardinality": "one"
+        },
+        {
+          "name": "projects",
+          "label": {
+            "labels": {
+              "DE": "Projekte",
+              "EN": "Projects"
+            }
+          },
+          "type": "project",
+          "required": false,
+          "inverseOf": "orders",
+          "validators": [],
+          "cardinality": "many"
+        }
+      ],
+      "operations": []
+    },
+    {
+      "name": "project",
+      "label": {
+        "labels": {
+          "DE": "Projekt",
+          "EN": "Project"
+        }
+      },
+      "typeId": 714405519,
+      "labelPlural": {
+        "labels": {
+          "DE": "Projekte",
+          "EN": "Projects"
+        }
+      },
+      "icon": "mdi-clipboard-outline",
+      "objectStringifier": "{{number}} - {{name}}",
+      "subsystem": "offer-management",
+      "base": "BaseEntity",
+      "singleton": false,
+      "attributes": [
+        {
+          "name": "startDate",
+          "label": {
+            "labels": {
+              "DE": "Startdatum",
+              "EN": "Start date"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "endDate",
+          "label": {
+            "labels": {
+              "DE": "Enddatum",
+              "EN": "End date"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "name",
+          "label": {
+            "labels": {
+              "DE": "Name",
+              "EN": "Name"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "number",
+          "label": {
+            "labels": {
+              "DE": "Nummer",
+              "EN": "Number"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "createdAt",
+          "label": {
+            "labels": {
+              "DE": "Erstellt am",
+              "EN": "Created at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "updatedAt",
+          "label": {
+            "labels": {
+              "DE": "Aktualisiert am",
+              "EN": "Updated at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        }
+      ],
+      "associations": [
+        {
+          "name": "orders",
+          "label": {
+            "labels": {
+              "DE": "Aufträge",
+              "EN": "Orders"
+            }
+          },
+          "type": "order",
+          "required": false,
+          "inverseOf": "projects",
+          "validators": [],
+          "cardinality": "many"
+        },
+        {
+          "name": "workPackages",
+          "label": {
+            "labels": {
+              "DE": "Arbeitspakete",
+              "EN": "Work packages"
+            }
+          },
+          "type": "workPackage",
+          "required": false,
+          "inverseOf": "project",
+          "validators": [],
+          "cardinality": "many"
+        },
+        {
+          "name": "expenditures",
+          "label": {
+            "labels": {
+              "DE": "Aufwendungen",
+              "EN": "Expenditures"
+            }
+          },
+          "type": "expenditure",
+          "required": false,
+          "inverseOf": "project",
+          "validators": [],
+          "cardinality": "many"
+        },
+        {
+          "name": "manager",
+          "label": {
+            "labels": {
+              "DE": "Teamleiter",
+              "EN": "Manager"
+            }
+          },
+          "type": "employee",
+          "required": false,
+          "inverseOf": "managerProjects",
+          "validators": [],
+          "cardinality": "one"
+        },
+        {
+          "name": "deputyManager",
+          "label": {
+            "labels": {
+              "DE": "Stellvertretender Teamleiter",
+              "EN": "Deputy manager"
+            }
+          },
+          "type": "employee",
+          "required": false,
+          "inverseOf": "deputyManagerProjects",
+          "validators": [],
+          "cardinality": "one"
+        },
+        {
+          "name": "team",
+          "label": {
+            "labels": {
+              "DE": "Team",
+              "EN": "Team"
+            }
+          },
+          "type": "employee",
+          "required": false,
+          "inverseOf": "teamProjects",
+          "validators": [],
+          "cardinality": "many"
+        }
+      ],
+      "operations": []
+    },
+    {
+      "name": "workPackage",
+      "label": {
+        "labels": {
+          "DE": "Arbeitspaket",
+          "EN": "Work package"
+        }
+      },
+      "typeId": 1376919659,
+      "labelPlural": {
+        "labels": {
+          "DE": "Arbeitspakete",
+          "EN": "Work packages"
+        }
+      },
+      "icon": "mdi-package",
+      "objectStringifier": "{{ticketNumber}} - {{designation}}",
+      "subsystem": "offer-management",
+      "base": "BaseEntity",
+      "singleton": false,
+      "attributes": [
+        {
+          "name": "description",
+          "label": {
+            "labels": {
+              "DE": "Beschreibung",
+              "EN": "Description"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "designation",
+          "label": {
+            "labels": {
+              "DE": "Bezeichnung",
+              "EN": "Designation"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "ticketNumber",
+          "label": {
+            "labels": {
+              "DE": "Ticketnummer",
+              "EN": "Ticket number"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "customerBillable",
+          "label": {
+            "labels": {
+              "DE": "Abrechenbar",
+              "EN": "Billable"
+            }
+          },
+          "dataType": "Boolean",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "type",
+          "label": {
+            "labels": {
+              "DE": "Typ",
+              "EN": "Type"
+            }
+          },
+          "dataType": "Enum",
+          "required": false,
+          "validators": [],
+          "values": "work-package-type"
+        },
+        {
+          "name": "createdAt",
+          "label": {
+            "labels": {
+              "DE": "Erstellt am",
+              "EN": "Created at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "updatedAt",
+          "label": {
+            "labels": {
+              "DE": "Aktualisiert am",
+              "EN": "Updated at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        }
+      ],
+      "associations": [
+        {
+          "name": "project",
+          "label": {
+            "labels": {
+              "DE": "Projekt",
+              "EN": "Project"
+            }
+          },
+          "type": "project",
+          "required": false,
+          "inverseOf": "workPackages",
+          "validators": [],
+          "cardinality": "one"
+        },
+        {
+          "name": "expenditures",
+          "label": {
+            "labels": {
+              "DE": "Aufwendungen",
+              "EN": "Expenditures"
+            }
+          },
+          "type": "expenditure",
+          "required": false,
+          "inverseOf": "workPackage",
+          "validators": [],
+          "cardinality": "many"
+        }
+      ],
+      "operations": []
+    },
+    {
+      "name": "expenditure",
+      "label": {
+        "labels": {
+          "DE": "Aufwendung",
+          "EN": "Expenditure"
+        }
+      },
+      "typeId": 288688629,
+      "labelPlural": {
+        "labels": {
+          "DE": "Aufwendungen",
+          "EN": "Expenditures"
+        }
+      },
+      "icon": "mdi-clipboard-text-clock",
+      "objectStringifier": "??",
+      "subsystem": "offer-management",
+      "base": "BaseEntity",
+      "singleton": false,
+      "attributes": [
+        {
+          "name": "startDate",
+          "label": {
+            "labels": {
+              "DE": "Startdatum",
+              "EN": "Start date"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "endDate",
+          "label": {
+            "labels": {
+              "DE": "Enddatum",
+              "EN": "End date"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "description",
+          "label": {
+            "labels": {
+              "DE": "Beschreibung",
+              "EN": "Description"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "customerBillable",
+          "label": {
+            "labels": {
+              "DE": "Abrechenbar",
+              "EN": "Billable"
+            }
+          },
+          "dataType": "Boolean",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "createdAt",
+          "label": {
+            "labels": {
+              "DE": "Erstellt am",
+              "EN": "Created at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "updatedAt",
+          "label": {
+            "labels": {
+              "DE": "Aktualisiert am",
+              "EN": "Updated at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        }
+      ],
+      "associations": [
+        {
+          "name": "employee",
+          "label": {
+            "labels": {
+              "DE": "Mitarbeiter",
+              "EN": "Employee"
+            }
+          },
+          "type": "employee",
+          "required": false,
+          "inverseOf": "expenditures",
+          "validators": [],
+          "cardinality": "one"
+        },
+        {
+          "name": "project",
+          "label": {
+            "labels": {
+              "DE": "Projekt",
+              "EN": "Project"
+            }
+          },
+          "type": "project",
+          "required": false,
+          "inverseOf": "expenditures",
+          "validators": [],
+          "cardinality": "one"
+        },
+        {
+          "name": "workPackage",
+          "label": {
+            "labels": {
+              "DE": "Arbeitspaket",
+              "EN": "Work package"
+            }
+          },
+          "type": "workPackage",
+          "required": false,
+          "inverseOf": "expenditures",
+          "validators": [],
+          "cardinality": "one"
+        }
+      ],
+      "operations": []
+    },
+    {
+      "name": "user",
+      "label": {
+        "labels": {
+          "DE": "Benutzer",
+          "EN": "User"
+        }
+      },
+      "typeId": -42933227,
+      "labelPlural": {
+        "labels": {
+          "DE": "Benutzer",
+          "EN": "Users"
+        }
+      },
+      "icon": "mdi-account",
+      "objectStringifier": "{{lastName}}, {{firstName}}",
+      "subsystem": null,
+      "base": "BaseEntity",
+      "singleton": false,
+      "attributes": [
+        {
+          "name": "email",
+          "label": {
+            "labels": {
+              "DE": "E-Mail",
+              "EN": "E-Mail"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "password",
+          "label": {
+            "labels": {
+              "DE": "Passwort",
+              "EN": "Password"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "firstName",
+          "label": {
+            "labels": {
+              "DE": "Vorname",
+              "EN": "First name"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "lastName",
+          "label": {
+            "labels": {
+              "DE": "Nachname",
+              "EN": "Last name"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "createdAt",
+          "label": {
+            "labels": {
+              "DE": "Erstellt am",
+              "EN": "Created at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "updatedAt",
+          "label": {
+            "labels": {
+              "DE": "Aktualisiert am",
+              "EN": "Updated at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        }
+      ],
+      "associations": [],
+      "operations": []
+    },
+    {
+      "name": "employee",
+      "label": {
+        "labels": {
+          "DE": "Mitarbeiter",
+          "EN": "Employee"
+        }
+      },
+      "typeId": -1431066120,
+      "labelPlural": {
+        "labels": {
+          "DE": "Mitarbeiter",
+          "EN": "Employees"
+        }
+      },
+      "icon": "mdi-account-group",
+      "objectStringifier": "{{lastName}}, {{firstName}}",
+      "subsystem": null,
+      "base": "User",
+      "singleton": false,
+      "attributes": [
+        {
+          "name": "email",
+          "label": {
+            "labels": {
+              "DE": "E-Mail",
+              "EN": "E-Mail"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "password",
+          "label": {
+            "labels": {
+              "DE": "Passwort",
+              "EN": "Password"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "firstName",
+          "label": {
+            "labels": {
+              "DE": "Vorname",
+              "EN": "First name"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "lastName",
+          "label": {
+            "labels": {
+              "DE": "Nachname",
+              "EN": "Last name"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "createdAt",
+          "label": {
+            "labels": {
+              "DE": "Erstellt am",
+              "EN": "Created at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "updatedAt",
+          "label": {
+            "labels": {
+              "DE": "Aktualisiert am",
+              "EN": "Updated at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        }
+      ],
+      "associations": [
+        {
+          "name": "managerProjects",
+          "label": {
+            "labels": {
+              "DE": "Teamleiter Projekte",
+              "EN": "Manager projects"
+            }
+          },
+          "type": "project",
+          "required": false,
+          "inverseOf": "manager",
+          "validators": [],
+          "cardinality": "many"
+        },
+        {
+          "name": "deputyManagerProjects",
+          "label": {
+            "labels": {
+              "DE": "Stellv. Teamleiter Projekte",
+              "EN": "Deputy manager project"
+            }
+          },
+          "type": "project",
+          "required": false,
+          "inverseOf": "deputyManager",
+          "validators": [],
+          "cardinality": "many"
+        },
+        {
+          "name": "teamProjects",
+          "label": {
+            "labels": {
+              "DE": "Projekte",
+              "EN": "Projects"
+            }
+          },
+          "type": "project",
+          "required": false,
+          "inverseOf": "team",
+          "validators": [],
+          "cardinality": "many"
+        },
+        {
+          "name": "expenditures",
+          "label": {
+            "labels": {
+              "DE": "Aufwendungen",
+              "EN": "Expenditures"
+            }
+          },
+          "type": "expenditure",
+          "required": false,
+          "inverseOf": "employee",
+          "validators": [],
+          "cardinality": "many"
+        }
+      ],
+      "operations": []
+    },
+    {
+      "name": "contact",
+      "label": {
+        "labels": {
+          "DE": "Kontakt",
+          "EN": "Contact"
+        }
+      },
+      "typeId": 1975242646,
+      "labelPlural": {
+        "labels": {
+          "DE": "Kontakte",
+          "EN": "Contacts"
+        }
+      },
+      "icon": "mdi-domain",
+      "objectStringifier": "{{name}}",
+      "subsystem": "crm",
+      "base": "BaseEntity",
+      "singleton": false,
+      "attributes": [
+        {
+          "name": "name",
+          "label": {
+            "labels": {
+              "DE": "Name",
+              "EN": "Name"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "createdAt",
+          "label": {
+            "labels": {
+              "DE": "Erstellt am",
+              "EN": "Created at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "updatedAt",
+          "label": {
+            "labels": {
+              "DE": "Aktualisiert am",
+              "EN": "Updated at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        }
+      ],
+      "associations": [
+        {
+          "name": "offers",
+          "label": {
+            "labels": {
+              "DE": "Angebote",
+              "EN": "Offers"
+            }
+          },
+          "type": null,
+          "required": false,
+          "inverseOf": "contact",
+          "validators": [],
+          "cardinality": null
+        }
+      ],
+      "operations": []
+    },
+    {
+      "name": "juristicPerson",
+      "label": {
+        "labels": {
+          "DE": "Juristische Person",
+          "EN": "Juristic person"
+        }
+      },
+      "typeId": -1299381124,
+      "labelPlural": {
+        "labels": {
+          "DE": "Juristische Personen",
+          "EN": "Juristic persons"
+        }
+      },
+      "icon": "mdi-domain",
+      "objectStringifier": "{{name}}",
+      "subsystem": "crm",
+      "base": "contact",
+      "singleton": false,
+      "attributes": [
+        {
+          "name": "name",
+          "label": {
+            "labels": {
+              "DE": "Name",
+              "EN": "Name"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "taxNumber",
+          "label": {
+            "labels": {
+              "DE": "Steuernummer",
+              "EN": "Tax number"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "createdAt",
+          "label": {
+            "labels": {
+              "DE": "Erstellt am",
+              "EN": "Created at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "updatedAt",
+          "label": {
+            "labels": {
+              "DE": "Aktualisiert am",
+              "EN": "Updated at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        }
+      ],
+      "associations": [
+        {
+          "name": "offers",
+          "label": {
+            "labels": {
+              "DE": "Angebote",
+              "EN": "Offers"
+            }
+          },
+          "type": "offer",
+          "required": false,
+          "inverseOf": "contact",
+          "validators": [],
+          "cardinality": "many"
+        }
+      ],
+      "operations": []
+    },
+    {
+      "name": "naturalPerson",
+      "label": {
+        "labels": {
+          "DE": "Natürliche Person",
+          "EN": "Natural person"
+        }
+      },
+      "typeId": 1538971604,
+      "labelPlural": {
+        "labels": {
+          "DE": "Natürliche Personen",
+          "EN": "Natural persons"
+        }
+      },
+      "icon": "mdi-account",
+      "objectStringifier": "{{name}}",
+      "subsystem": "crm",
+      "base": "contact",
+      "singleton": false,
+      "attributes": [
+        {
+          "name": "name",
+          "label": {
+            "labels": {
+              "DE": "Name",
+              "EN": "Name"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "firstName",
+          "label": {
+            "labels": {
+              "DE": "Vorname",
+              "EN": "First name"
+            }
+          },
+          "dataType": "String",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "createdAt",
+          "label": {
+            "labels": {
+              "DE": "Erstellt am",
+              "EN": "Created at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        },
+        {
+          "name": "updatedAt",
+          "label": {
+            "labels": {
+              "DE": "Aktualisiert am",
+              "EN": "Updated at"
+            }
+          },
+          "dataType": "Date",
+          "required": false,
+          "validators": [],
+          "values": null
+        }
+      ],
+      "associations": [
+        {
+          "name": "offers",
+          "label": {
+            "labels": {
+              "DE": "Angebote",
+              "EN": "Offers"
+            }
+          },
+          "type": "offer",
+          "required": false,
+          "inverseOf": "contact",
+          "validators": [],
+          "cardinality": "many"
+        }
+      ],
+      "operations": []
+    }
+  ],
+  "enums": [
+    {
+      "name": "offer-status",
+      "label": {
+        "labels": {
+          "DE": "Angebotsstatus",
+          "EN": "Offer status"
+        }
+      },
+      "values": [
+        {
+          "name": "CREATED",
+          "label": {
+            "labels": {
+              "DE": "Erstellt",
+              "EN": "Created"
+            }
+          }
+        },
+        {
+          "name": "WAITING_FOR_APPROVAL",
+          "label": {
+            "labels": {
+              "DE": "Wartet auf Bestätigung",
+              "EN": "Waiting for Approval"
+            }
+          }
+        },
+        {
+          "name": "SENT",
+          "label": {
+            "labels": {
+              "DE": "Gesendet",
+              "EN": "Sent"
+            }
+          }
+        },
+        {
+          "name": "DECLINED",
+          "label": {
+            "labels": {
+              "DE": "Abgelehnt",
+              "EN": "Declined"
+            }
+          }
+        },
+        {
+          "name": "EXPIRED",
+          "label": {
+            "labels": {
+              "DE": "Abgelaufen",
+              "EN": "Expired"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "project-type",
+      "label": {
+        "labels": {
+          "DE": "Projektart",
+          "EN": "Project type"
+        }
+      },
+      "values": [
+        {
+          "name": "FIXED_PRICE",
+          "label": {
+            "labels": {
+              "DE": "Festpreis",
+              "EN": "Fixed price"
+            }
+          }
+        },
+        {
+          "name": "TIME_AND_MATERIAL",
+          "label": {
+            "labels": {
+              "DE": "Zeit und Material",
+              "EN": "Time and Material"
+            }
+          }
+        },
+        {
+          "name": "SERVICE",
+          "label": {
+            "labels": {
+              "DE": "Service",
+              "EN": "Service"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "work-package-type",
+      "label": {
+        "labels": {
+          "DE": "Arbeitspakettyp",
+          "EN": "Work package type"
+        }
+      },
+      "values": [
+        {
+          "name": "DISCUSSION",
+          "label": {
+            "labels": {
+              "DE": "Diskussion",
+              "EN": "Discussion"
+            }
+          }
+        },
+        {
+          "name": "DEVELOPMENT",
+          "label": {
+            "labels": {
+              "DE": "Entwicklung",
+              "EN": "Development"
+            }
+          }
+        },
+        {
+          "name": "CONSULTING",
+          "label": {
+            "labels": {
+              "DE": "Beratung",
+              "EN": "Consulting"
+            }
+          }
+        },
+        {
+          "name": "SALES",
+          "label": {
+            "labels": {
+              "DE": "Verkauf",
+              "EN": "Sales"
+            }
+          }
+        },
+        {
+          "name": "EDUCATION",
+          "label": {
+            "labels": {
+              "DE": "Weiterbildung",
+              "EN": "Education"
+            }
+          }
+        },
+        {
+          "name": "ADMINISTRATION",
+          "label": {
+            "labels": {
+              "DE": "Administration",
+              "EN": "Administration"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "listViews": [
+    {
+      "name": "offer",
+      "label": null,
+      "uiFactory": null,
+      "columns": [
+        {
+          "name": "number",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        },
+        {
+          "name": "sum",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "order",
+      "label": null,
+      "uiFactory": null,
+      "columns": [
+        {
+          "name": "externalOrderNumber",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        },
+        {
+          "name": "receivedAt",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "project",
+      "label": null,
+      "uiFactory": null,
+      "columns": [
+        {
+          "name": "number",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        },
+        {
+          "name": "name",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        },
+        {
+          "name": "startDate",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        },
+        {
+          "name": "endDate",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "workPackage",
+      "label": null,
+      "uiFactory": null,
+      "columns": [
+        {
+          "name": "ticketNumber",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        },
+        {
+          "name": "designation",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        },
+        {
+          "name": "type",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        },
+        {
+          "name": "customerBillable",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "expenditure",
+      "label": null,
+      "uiFactory": null,
+      "columns": [
+        {
+          "name": "startDate",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        },
+        {
+          "name": "endDate",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        },
+        {
+          "name": "customerBillable",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "employee",
+      "label": null,
+      "uiFactory": null,
+      "columns": [
+        {
+          "name": "firstName",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        },
+        {
+          "name": "lastName",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        },
+        {
+          "name": "email",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "juristicPerson",
+      "label": null,
+      "uiFactory": null,
+      "columns": [
+        {
+          "name": "name",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        },
+        {
+          "name": "taxNumber",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "naturalPerson",
+      "label": null,
+      "uiFactory": null,
+      "columns": [
+        {
+          "name": "name",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        },
+        {
+          "name": "firstName",
+          "sortable": true,
+          "searchable": true,
+          "width": 45,
+          "uiFactoryParameters": {},
+          "default": false
+        }
+      ]
+    }
+  ],
+  "detailViews": [
+    {
+      "name": "offer",
+      "label": null,
+      "uiFactory": null,
+      "groups": [
+        {
+          "name": "main",
+          "label": null,
+          "uiFactory": "DetailViewGroupRow",
+          "labelVisible": false,
+          "colSM": 12,
+          "colMD": 12,
+          "colLG": 12,
+          "colOffset": 0,
+          "groups": [
+            {
+              "name": "main",
+              "label": null,
+              "uiFactory": "DetailViewGroupTabGroup",
+              "labelVisible": false,
+              "colSM": 12,
+              "colMD": 12,
+              "colLG": 12,
+              "colOffset": 0,
+              "groups": [
+                {
+                  "name": "data",
+                  "label": {
+                    "labels": {
+                      "DE": "Daten",
+                      "EN": "Data"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "number",
+                          "label": null,
+                          "uiFactory": "TextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "date",
+                          "label": null,
+                          "uiFactory": "DateInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "validUntil",
+                          "label": null,
+                          "uiFactory": "DateInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "status",
+                          "label": null,
+                          "uiFactory": "EnumInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    },
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "designation",
+                          "label": null,
+                          "uiFactory": "TextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 6,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "file",
+                          "label": null,
+                          "uiFactory": "FileInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "file",
+                          "label": {
+                            "labels": {
+                              "DE": "Dateivorschau",
+                              "EN": "File preview"
+                            }
+                          },
+                          "uiFactory": "FilePreviewComponent",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {
+                            "uiFactory-height": "425",
+                            "uiFactory-width": "100%"
+                          }
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    },
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "contact",
+                          "label": null,
+                          "uiFactory": "AssociationToOneComponent",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "sum",
+                          "label": null,
+                          "uiFactory": "CurrencyNumberInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "type",
+                          "label": null,
+                          "uiFactory": "EnumInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    },
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "description",
+                          "label": null,
+                          "uiFactory": "MultilineTextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    },
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "createdAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "updatedAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                },
+                {
+                  "name": "orders",
+                  "label": {
+                    "labels": {
+                      "DE": "Beauftragungen",
+                      "EN": "Orders"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "orders",
+                          "label": null,
+                          "uiFactory": "DetailViewGroupToManyAssociationItem",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                },
+                {
+                  "name": "foobar",
+                  "label": {
+                    "labels": {
+                      "DE": "MultiSelectComponent",
+                      "EN": "MultiSelectComponent"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "orders",
+                          "label": null,
+                          "uiFactory": "AssociationToManySelectComponent",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                }
+              ],
+              "items": [],
+              "uiFactoryParameters": {}
+            }
+          ],
+          "items": [],
+          "uiFactoryParameters": {}
+        }
+      ],
+      "type": null,
+      "typeId": null
+    },
+    {
+      "name": "order",
+      "label": null,
+      "uiFactory": null,
+      "groups": [
+        {
+          "name": "main",
+          "label": null,
+          "uiFactory": "DetailViewGroupRow",
+          "labelVisible": false,
+          "colSM": 12,
+          "colMD": 12,
+          "colLG": 12,
+          "colOffset": 0,
+          "groups": [
+            {
+              "name": "main",
+              "label": null,
+              "uiFactory": "DetailViewGroupTabGroup",
+              "labelVisible": false,
+              "colSM": 12,
+              "colMD": 12,
+              "colLG": 12,
+              "colOffset": 0,
+              "groups": [
+                {
+                  "name": "data",
+                  "label": {
+                    "labels": {
+                      "DE": "Daten",
+                      "EN": "Data"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "externalOrderNumber",
+                          "label": null,
+                          "uiFactory": "TextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "receivedAt",
+                          "label": null,
+                          "uiFactory": "DateInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "file",
+                          "label": null,
+                          "uiFactory": "FileInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "file",
+                          "label": {
+                            "labels": {
+                              "DE": "Dateivorschau",
+                              "EN": "File preview"
+                            }
+                          },
+                          "uiFactory": "FilePreviewComponent",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "offer",
+                          "label": null,
+                          "uiFactory": "AssociationToOneComponent",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "createdAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 6,
+                          "colOffset": 3,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "updatedAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 6,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                },
+                {
+                  "name": "projects",
+                  "label": {
+                    "labels": {
+                      "DE": "Projekte",
+                      "EN": "Projects"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "projects",
+                          "label": null,
+                          "uiFactory": "DetailViewGroupToManyAssociationItem",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                }
+              ],
+              "items": [],
+              "uiFactoryParameters": {}
+            }
+          ],
+          "items": [],
+          "uiFactoryParameters": {}
+        }
+      ],
+      "type": null,
+      "typeId": null
+    },
+    {
+      "name": "project",
+      "label": null,
+      "uiFactory": null,
+      "groups": [
+        {
+          "name": "main",
+          "label": null,
+          "uiFactory": "DetailViewGroupRow",
+          "labelVisible": false,
+          "colSM": 12,
+          "colMD": 12,
+          "colLG": 12,
+          "colOffset": 0,
+          "groups": [
+            {
+              "name": "main",
+              "label": null,
+              "uiFactory": "DetailViewGroupTabGroup",
+              "labelVisible": false,
+              "colSM": 12,
+              "colMD": 12,
+              "colLG": 12,
+              "colOffset": 0,
+              "groups": [
+                {
+                  "name": "data",
+                  "label": {
+                    "labels": {
+                      "DE": "Daten",
+                      "EN": "Data"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "name",
+                          "label": null,
+                          "uiFactory": "TextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "number",
+                          "label": null,
+                          "uiFactory": "TextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "startDate",
+                          "label": null,
+                          "uiFactory": "DateInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "endDate",
+                          "label": null,
+                          "uiFactory": "DateInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "manager",
+                          "label": null,
+                          "uiFactory": "AssociationToOneComponent",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "deputyManager",
+                          "label": null,
+                          "uiFactory": "AssociationToOneComponent",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "createdAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "updatedAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                },
+                {
+                  "name": "orders",
+                  "label": {
+                    "labels": {
+                      "DE": "Aufträge",
+                      "EN": "Orders"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "orders",
+                          "label": null,
+                          "uiFactory": "DetailViewGroupToManyAssociationItem",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                },
+                {
+                  "name": "workPackages",
+                  "label": {
+                    "labels": {
+                      "DE": "Arbeitspakete",
+                      "EN": "Work packages"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "workPackages",
+                          "label": null,
+                          "uiFactory": "DetailViewGroupToManyAssociationItem",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                },
+                {
+                  "name": "expenditures",
+                  "label": {
+                    "labels": {
+                      "DE": "Aufwendungen",
+                      "EN": "Expenditures"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "expenditures",
+                          "label": null,
+                          "uiFactory": "DetailViewGroupToManyAssociationItem",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                },
+                {
+                  "name": "team",
+                  "label": {
+                    "labels": {
+                      "DE": "Team",
+                      "EN": "Team"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "team",
+                          "label": null,
+                          "uiFactory": "DetailViewGroupToManyAssociationItem",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                }
+              ],
+              "items": [],
+              "uiFactoryParameters": {}
+            }
+          ],
+          "items": [],
+          "uiFactoryParameters": {}
+        }
+      ],
+      "type": null,
+      "typeId": null
+    },
+    {
+      "name": "workPackage",
+      "label": null,
+      "uiFactory": null,
+      "groups": [
+        {
+          "name": "main",
+          "label": null,
+          "uiFactory": "DetailViewGroupRow",
+          "labelVisible": false,
+          "colSM": 12,
+          "colMD": 12,
+          "colLG": 12,
+          "colOffset": 0,
+          "groups": [
+            {
+              "name": "main",
+              "label": null,
+              "uiFactory": "DetailViewGroupTabGroup",
+              "labelVisible": false,
+              "colSM": 12,
+              "colMD": 12,
+              "colLG": 12,
+              "colOffset": 0,
+              "groups": [
+                {
+                  "name": "data",
+                  "label": {
+                    "labels": {
+                      "DE": "Daten",
+                      "EN": "Data"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "designation",
+                          "label": null,
+                          "uiFactory": "TextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "ticketNumber",
+                          "label": null,
+                          "uiFactory": "TextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "type",
+                          "label": null,
+                          "uiFactory": "EnumInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "project",
+                          "label": null,
+                          "uiFactory": "AssociationToOneComponent",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 3,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    },
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "description",
+                          "label": null,
+                          "uiFactory": "MultilineTextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "customerBillable",
+                          "label": null,
+                          "uiFactory": "ToggleInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    },
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "createdAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 6,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "updatedAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 6,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                },
+                {
+                  "name": "expenditures",
+                  "label": {
+                    "labels": {
+                      "DE": "Aufwendungen",
+                      "EN": "Expenditures"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "expenditures",
+                          "label": null,
+                          "uiFactory": "DetailViewGroupToManyAssociationItem",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                }
+              ],
+              "items": [],
+              "uiFactoryParameters": {}
+            }
+          ],
+          "items": [],
+          "uiFactoryParameters": {}
+        }
+      ],
+      "type": null,
+      "typeId": null
+    },
+    {
+      "name": "expenditure",
+      "label": null,
+      "uiFactory": null,
+      "groups": [
+        {
+          "name": "main",
+          "label": null,
+          "uiFactory": "DetailViewGroupRow",
+          "labelVisible": false,
+          "colSM": 12,
+          "colMD": 12,
+          "colLG": 12,
+          "colOffset": 0,
+          "groups": [
+            {
+              "name": "main",
+              "label": null,
+              "uiFactory": "DetailViewGroupTabGroup",
+              "labelVisible": false,
+              "colSM": 12,
+              "colMD": 12,
+              "colLG": 12,
+              "colOffset": 0,
+              "groups": [
+                {
+                  "name": "data",
+                  "label": {
+                    "labels": {
+                      "DE": "Daten",
+                      "EN": "Data"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "startDate",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 6,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "endDate",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 6,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    },
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "description",
+                          "label": null,
+                          "uiFactory": "MultilineTextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "customerBillable",
+                          "label": null,
+                          "uiFactory": "ToggleInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    },
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "employee",
+                          "label": null,
+                          "uiFactory": "AssociationToOneComponent",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 4,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "project",
+                          "label": null,
+                          "uiFactory": "AssociationToOneComponent",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 4,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "workPackage",
+                          "label": null,
+                          "uiFactory": "AssociationToOneComponent",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 4,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    },
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "createdAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 6,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "updatedAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 6,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                }
+              ],
+              "items": [],
+              "uiFactoryParameters": {}
+            }
+          ],
+          "items": [],
+          "uiFactoryParameters": {}
+        }
+      ],
+      "type": null,
+      "typeId": null
+    },
+    {
+      "name": "employee",
+      "label": null,
+      "uiFactory": null,
+      "groups": [
+        {
+          "name": "main",
+          "label": null,
+          "uiFactory": "DetailViewGroupRow",
+          "labelVisible": false,
+          "colSM": 12,
+          "colMD": 12,
+          "colLG": 12,
+          "colOffset": 0,
+          "groups": [
+            {
+              "name": "main",
+              "label": null,
+              "uiFactory": "DetailViewGroupTabGroup",
+              "labelVisible": false,
+              "colSM": 12,
+              "colMD": 12,
+              "colLG": 12,
+              "colOffset": 0,
+              "groups": [
+                {
+                  "name": "data",
+                  "label": {
+                    "labels": {
+                      "DE": "Daten",
+                      "EN": "Data"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "email",
+                          "label": null,
+                          "uiFactory": "TextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "password",
+                          "label": null,
+                          "uiFactory": "PasswordInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "firstName",
+                          "label": null,
+                          "uiFactory": "TextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "lastName",
+                          "label": null,
+                          "uiFactory": "TextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "createdAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "updatedAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                },
+                {
+                  "name": "managerProjects",
+                  "label": {
+                    "labels": {
+                      "DE": "Teamleiter Projekte",
+                      "EN": "Manager projects"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "managerProjects",
+                          "label": null,
+                          "uiFactory": "DetailViewGroupToManyAssociationItem",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                },
+                {
+                  "name": "deputyManagerProjects",
+                  "label": {
+                    "labels": {
+                      "DE": "Stellv. Teamleiter Projekte",
+                      "EN": "Deputy manager project"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "deputyManagerProjects",
+                          "label": null,
+                          "uiFactory": "DetailViewGroupToManyAssociationItem",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                },
+                {
+                  "name": "teamProjects",
+                  "label": {
+                    "labels": {
+                      "DE": "Projekte",
+                      "EN": "Projects"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "teamProjects",
+                          "label": null,
+                          "uiFactory": "DetailViewGroupToManyAssociationItem",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                },
+                {
+                  "name": "expenditures",
+                  "label": {
+                    "labels": {
+                      "DE": "Aufwendungen",
+                      "EN": "Expenditures"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "expenditures",
+                          "label": null,
+                          "uiFactory": "DetailViewGroupToManyAssociationItem",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                }
+              ],
+              "items": [],
+              "uiFactoryParameters": {}
+            }
+          ],
+          "items": [],
+          "uiFactoryParameters": {}
+        }
+      ],
+      "type": null,
+      "typeId": null
+    },
+    {
+      "name": "juristicPerson",
+      "label": null,
+      "uiFactory": null,
+      "groups": [
+        {
+          "name": "main",
+          "label": null,
+          "uiFactory": "DetailViewGroupRow",
+          "labelVisible": false,
+          "colSM": 12,
+          "colMD": 12,
+          "colLG": 12,
+          "colOffset": 0,
+          "groups": [
+            {
+              "name": "main",
+              "label": null,
+              "uiFactory": "DetailViewGroupTabGroup",
+              "labelVisible": false,
+              "colSM": 12,
+              "colMD": 12,
+              "colLG": 12,
+              "colOffset": 0,
+              "groups": [
+                {
+                  "name": "properties",
+                  "label": {
+                    "labels": {
+                      "DE": "Daten",
+                      "EN": "Data"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "name",
+                          "label": null,
+                          "uiFactory": "TextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "taxNumber",
+                          "label": null,
+                          "uiFactory": "TextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "createdAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "updatedAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                },
+                {
+                  "name": "offers",
+                  "label": {
+                    "labels": {
+                      "DE": "Angebote",
+                      "EN": "Offers"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "offers",
+                          "label": null,
+                          "uiFactory": "DetailViewGroupToManyAssociationItem",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                }
+              ],
+              "items": [],
+              "uiFactoryParameters": {}
+            }
+          ],
+          "items": [],
+          "uiFactoryParameters": {}
+        }
+      ],
+      "type": null,
+      "typeId": null
+    },
+    {
+      "name": "naturalPerson",
+      "label": null,
+      "uiFactory": null,
+      "groups": [
+        {
+          "name": "main",
+          "label": null,
+          "uiFactory": "DetailViewGroupRow",
+          "labelVisible": false,
+          "colSM": 12,
+          "colMD": 12,
+          "colLG": 12,
+          "colOffset": 0,
+          "groups": [
+            {
+              "name": "main",
+              "label": null,
+              "uiFactory": "DetailViewGroupTabGroup",
+              "labelVisible": false,
+              "colSM": 12,
+              "colMD": 12,
+              "colLG": 12,
+              "colOffset": 0,
+              "groups": [
+                {
+                  "name": "properties",
+                  "label": {
+                    "labels": {
+                      "DE": "Daten",
+                      "EN": "Data"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "firstName",
+                          "label": null,
+                          "uiFactory": "TextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "name",
+                          "label": null,
+                          "uiFactory": "TextInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "createdAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        },
+                        {
+                          "name": "updatedAt",
+                          "label": null,
+                          "uiFactory": "DateTimeInput",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": true,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                },
+                {
+                  "name": "offers",
+                  "label": {
+                    "labels": {
+                      "DE": "Angebote",
+                      "EN": "Offers"
+                    }
+                  },
+                  "uiFactory": "DetailViewGroupTab",
+                  "labelVisible": false,
+                  "colSM": 12,
+                  "colMD": 12,
+                  "colLG": 12,
+                  "colOffset": 0,
+                  "groups": [
+                    {
+                      "name": null,
+                      "label": null,
+                      "uiFactory": "DetailViewGroupRow",
+                      "labelVisible": false,
+                      "colSM": 12,
+                      "colMD": 12,
+                      "colLG": 12,
+                      "colOffset": 0,
+                      "groups": [],
+                      "items": [
+                        {
+                          "name": "offers",
+                          "label": null,
+                          "uiFactory": "DetailViewGroupToManyAssociationItem",
+                          "labelVisible": false,
+                          "colSM": 12,
+                          "colMD": 12,
+                          "colLG": 12,
+                          "colOffset": 0,
+                          "member": null,
+                          "disabled": false,
+                          "uiFactoryParameters": {}
+                        }
+                      ],
+                      "uiFactoryParameters": {}
+                    }
+                  ],
+                  "items": [],
+                  "uiFactoryParameters": {}
+                }
+              ],
+              "items": [],
+              "uiFactoryParameters": {}
+            }
+          ],
+          "items": [],
+          "uiFactoryParameters": {}
+        }
+      ],
+      "type": null,
+      "typeId": null
+    }
+  ]
+}

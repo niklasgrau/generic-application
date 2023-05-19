@@ -1,0 +1,132 @@
+### Get Test
+POST localhost:8080/api/generic/1?typeId=-42976036
+Content-Type: application/json
+
+{
+  "typeId": -42976036,
+  "id": 1,
+  "propertySelection": [
+    "boolValue",
+    "nullableBoolValue",
+    "byteValue",
+    "nullableByteValue",
+    "shortValue",
+    "nullableShortValue",
+    "intValue",
+    "nullableIntValue",
+    "longValue",
+    "nullableLongValue",
+    "floatValue",
+    "nullableFloatValue",
+    "doubleValue",
+    "nullableDoubleValue",
+    "bigDecimalValue",
+    "stringValue",
+    "charValue",
+    "nullableCharValue",
+    "dateValue",
+    "createdAt",
+    "updatedAt"
+  ]
+}
+
+### Get all Test
+POST localhost:8080/api/generic/list?typeId=-42976036
+Content-Type: application/json
+
+{
+  "typeId": -42976036,
+  "propertySelection": [
+    "boolValue",
+    "nullableBoolValue",
+    "byteValue",
+    "nullableByteValue",
+    "shortValue",
+    "nullableShortValue",
+    "intValue",
+    "nullableIntValue",
+    "longValue",
+    "nullableLongValue",
+    "floatValue",
+    "nullableFloatValue",
+    "doubleValue",
+    "nullableDoubleValue",
+    "bigDecimalValue",
+    "stringValue",
+    "charValue",
+    "nullableCharValue",
+    "dateValue",
+    "createdAt",
+    "updatedAt"
+  ],
+  "page": 1,
+  "pageSize": 50
+}
+
+### Create Test
+POST localhost:8080/api/generic
+Content-Type: application/json
+
+{
+  "entity": {
+    "typeId": -42976036,
+    "properties": {
+      "nullableIntValue": 2,
+      "dateValue": "1980-09-29T01:27:09.219+00:00",
+      "bigDecimalValue": 114.00,
+      "charValue": "x",
+      "nullableByteValue": 8,
+      "intValue": 4,
+      "nullableLongValue": 1480,
+      "floatValue": 2.8,
+      "doubleValue": 60266.75,
+      "nullableDoubleValue": 31467.55,
+      "nullableCharValue": "f",
+      "longValue": 7484,
+      "nullableFloatValue": 5.2,
+      "stringValue": "Occaecati debitis accusantium natus.",
+      "nullableBoolValue": false,
+      "boolValue": false,
+      "shortValue": 6,
+      "nullableShortValue": 7,
+      "byteValue": 1
+    }
+  }
+}
+
+### Update Test
+PUT localhost:8080/api/generic/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "entity": {
+    "typeId": -42976036,
+    "properties": {
+      "nullableIntValue": 2,
+      "dateValue": "1980-09-29T01:27:09.219+00:00",
+      "bigDecimalValue": 114.00,
+      "charValue": "x",
+      "nullableByteValue": 8,
+      "intValue": 4,
+      "nullableLongValue": 1480,
+      "floatValue": 2.8,
+      "doubleValue": 60266.75,
+      "nullableDoubleValue": 31467.55,
+      "nullableCharValue": "f",
+      "longValue": 7484,
+      "nullableFloatValue": 5.2,
+      "stringValue": "Occaecati debitis accusantium natus.",
+      "nullableBoolValue": false,
+      "boolValue": false,
+      "shortValue": 6,
+      "nullableShortValue": 7,
+      "byteValue": 1
+    }
+  }
+}
+
+### Delete Test
+DELETE localhost:8080/api/generic/1?typeId=-42976036
+
+###

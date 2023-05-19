@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:core="core"
+            xmlns:view="view"
+            targetNamespace="core"
+            elementFormDefault="qualified">
+
+    <xsd:import namespace="view" schemaLocation="view-schema.xsd"/>
+
+    <xsd:element name="application">
+        <xsd:annotation>
+            <xsd:documentation>Defines the application itself.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="core:PDMeta">
+                    <xsd:sequence>
+                        <xsd:element name="subsystems" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Defines the subsystems of the application.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:complexType>
+                                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="subsystem" type="core:Subsystem"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="navigation" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Defines the navigation of the application.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:complexType>
+                                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="navigationItem" type="core:PDMeta"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="listViews" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Defines the ListView's of the application.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:complexType>
+                                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element ref="view:listView"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="detailViews" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Defines the DetailView's of the application.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:complexType>
+                                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element ref="view:detailView"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="types" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Defines the types of the application.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:complexType>
+                                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="type" type="core:PDTypeMeta"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="enums" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Defines an enum as a set of values with labels.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:complexType>
+                                <xsd:sequence maxOccurs="unbounded">
+                                    <xsd:element name="enum" type="core:PDEnumMeta"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                    <xsd:attribute name="version" type="xsd:long">
+                        <xsd:annotation>
+                            <xsd:documentation>Version hash for this metadata xml definition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--  Abstract meta types  -->
+
+    <xsd:complexType name="PDMeta">
+        <xsd:annotation>
+            <xsd:documentation>Defines the base metadata of the application element.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:attribute name="name" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation>Defines the unique name of the element.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="label" type="core:MLString">
+            <xsd:annotation>
+                <xsd:documentation>Defines the multilingual label of the element.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="Subsystem">
+        <xsd:annotation>
+            <xsd:documentation>Defines the metadata of a subsystem.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="core:PDMeta">
+                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xsd:element name="subsystem" type="core:Subsystem"/>
+                </xsd:sequence>
+                <xsd:attribute name="icon" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines the name of the icon to be displayed for this operation.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="PDMemberMeta" abstract="true">
+        <xsd:annotation>
+            <xsd:documentation>Defines the metadata of the type members.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="core:PDMeta"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="PDOperationMeta" abstract="true">
+        <xsd:annotation>
+            <xsd:documentation>Defines the metadata of an operation type member.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="core:PDMemberMeta">
+                <xsd:attribute name="icon" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines the name of the icon to be displayed for this operation.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="PDAttributeMeta">
+        <xsd:annotation>
+            <xsd:documentation>Defines the metadata of an attribute type member.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="core:PDMemberMeta">
+                <xsd:sequence minOccurs="0">
+                    <xsd:element name="validators">
+                        <xsd:annotation>
+                            <xsd:documentation>Allows the definition of a sequence of validators for the attribute.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:complexType>
+                            <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                                <xsd:element name="validator" type="core:ValidatorMeta"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="required" type="xsd:boolean" default="false">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines if this attribute is required or not. Default: false.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="values" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines the enum to get values from.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="dataType" type="core:DataType" use="required">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines data type of this attribute. Default: String.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="ValidatorMeta">
+        <xsd:annotation>
+            <xsd:documentation>Defines validator metadata.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:attribute name="errorMessage" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation>Defines the error message to be shown if the expression fails.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="expression" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation>Defines expression to be validated by this validator.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="PDAssociationMeta">
+        <xsd:annotation>
+            <xsd:documentation>Defines the metadata of an association type member.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="core:PDMemberMeta">
+                <xsd:sequence minOccurs="0">
+                    <xsd:element name="validators">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Allows the definition of a sequence of validators for the attribute.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:complexType>
+                            <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                                <xsd:element name="validator" type="core:ValidatorMeta"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="type" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            Defines the name of the associated entity type.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="required" type="xsd:boolean" default="false">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            Defines if this association is required or not. Default: false.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="inverseOf" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines the name of the inverse relation.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="cardinality" type="core:Cardinality">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines the cardinality of this association.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="PDTypeMeta">
+        <xsd:annotation>
+            <xsd:documentation>Defines the metadata of a type.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="core:PDMeta">
+                <xsd:sequence>
+                    <xsd:element name="attributes" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>Allows the definition of a sequence of attributes for the type.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:complexType>
+                            <xsd:sequence maxOccurs="unbounded">
+                                <xsd:element name="attribute" type="core:PDAttributeMeta"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="associations" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>Allows the definition of a sequence of associations for the type.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:complexType>
+                            <xsd:sequence maxOccurs="unbounded">
+                                <xsd:element name="association" type="core:PDAssociationMeta"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="operations" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>Allows the definition of a sequence of operations for the type.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:complexType>
+                            <xsd:sequence maxOccurs="unbounded">
+                                <xsd:element name="operation" type="core:PDOperationMeta"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+
+                <xsd:attribute name="typeId" type="xsd:long">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines the typeId (hash), this type is representing.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="labelPlural" type="core:MLString">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines the multilingual plural label of the element.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="objectStringifier" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines a stringify expression referencing attribute names for composition.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="icon" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines the name of the icon to be displayed for this type.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="base" type="xsd:string" default="BaseEntity">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines the name of the base type (inheritance) of this type. Default:
+                            BaseEntity.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="singleton" type="xsd:boolean" default="false">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines if this type is a singleton. Default: false.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="subsystem" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines name of the subsystem, the type is related to</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="PDEnumMeta">
+        <xsd:complexContent>
+            <xsd:extension base="core:PDMeta">
+                <xsd:sequence maxOccurs="unbounded">
+                    <xsd:element name="value" type="core:PDMeta"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!--  SimpleType restrictions  -->
+
+    <xsd:simpleType name="MLString">
+        <xsd:annotation>
+            <xsd:documentation>A multilingual string formatted like "[DE:Titel][EN:Title]".</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="(\[(.{2}):([^\]]*)\])+"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="Cardinality">
+        <xsd:annotation>
+            <xsd:documentation>Defines the cardinality of an association.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="many"/>
+            <xsd:enumeration value="one"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="DataType">
+        <xsd:annotation>
+            <xsd:documentation>A data type supported by the frontend.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="String"/>
+            <xsd:enumeration value="Number"/>
+            <xsd:enumeration value="Boolean"/>
+            <xsd:enumeration value="Date"/>
+            <xsd:enumeration value="Enum"/>
+            <xsd:enumeration value="File"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

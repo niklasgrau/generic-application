@@ -1,0 +1,102 @@
+### Get Expenditure
+POST localhost:8080/api/generic/1?typeId=288688629
+Content-Type: application/json
+
+{
+  "typeId": 288688629,
+  "id": 1,
+  "propertySelection": [
+    "startDate",
+    "endDate",
+    "description",
+    "customerBillable",
+    "employee",
+    "project",
+    "workPackage",
+    "createdAt",
+    "updatedAt"
+  ]
+}
+
+### Get all Expenditure
+POST localhost:8080/api/generic/list?typeId=288688629
+Content-Type: application/json
+
+{
+  "typeId": 288688629,
+  "propertySelection": [
+    "startDate",
+    "endDate",
+    "description",
+    "customerBillable",
+    "employee",
+    "project",
+    "workPackage",
+    "createdAt",
+    "updatedAt"
+  ],
+  "page": 1,
+  "pageSize": 50
+}
+
+### Create Expenditure
+POST localhost:8080/api/generic
+Content-Type: application/json
+
+{
+  "entity": {
+    "typeId": 288688629,
+    "properties": {
+      "startDate":  "1111-11-11T11:11:11.111+00:00",
+      "endDate":  "2222-11-11T11:11:11.111+00:00",
+      "description":  "Beschreibungstext",
+      "customerBillable":  true,
+      "employee": {
+        "typeId": -1431066120,
+        "id": 1
+      },
+      "project": {
+        "typeId": 714405519,
+        "id": 1
+      },
+      "workPackage": {
+        "typeId": 1376919659,
+        "id": 1
+      }
+    }
+  }
+}
+
+### Update Expenditure
+PUT localhost:8080/api/generic/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "entity": {
+    "typeId": 288688629,
+    "properties": {
+      "startDate":  "1111-11-11T11:11:11.111+00:00",
+      "endDate":  "2222-11-11T11:11:11.111+00:00",
+      "description":  "Neuer Beschreibungstext",
+      "customerBillable":  false,
+      "employee": {
+        "typeId": -1431066120,
+        "id": 2
+      },
+      "project": {
+        "typeId": 714405519,
+        "id": 1
+      },
+      "workPackage": {
+        "typeId": 1376919659,
+        "id": 2
+      }
+    }
+  }
+}
+
+### Delete Expenditure
+DELETE localhost:8080/api/generic/1?typeId=288688629
+
+###

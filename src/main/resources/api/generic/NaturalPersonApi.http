@@ -1,0 +1,93 @@
+### Get NaturalPerson
+POST localhost:8080/api/generic/3?typeId=1538971604
+Content-Type: application/json
+
+{
+  "typeId": 1538971604,
+  "id": 3,
+  "propertySelection": [
+    "name",
+    "firstName",
+    "createdAt",
+    "updatedAt"
+  ]
+}
+
+### Get all NaturalPerson
+POST localhost:8080/api/generic/list?typeId=1538971604
+Content-Type: application/json
+
+{
+  "typeId": 1538971604,
+  "propertySelection": [
+    "name",
+    "firstName",
+    "createdAt",
+    "updatedAt"
+  ],
+  "page": 1,
+  "pageSize": 50
+}
+
+### Create NaturalPerson
+POST localhost:8080/api/generic
+Content-Type: application/json
+
+{
+  "entity": {
+    "typeId": 1538971604,
+    "properties": {
+      "name": "Name",
+      "firstName": "Vorname"
+    }
+  },
+  "associationStates": {
+    "offers": {
+      "connected": [
+        {
+          "typeId": -1336857774,
+          "id": 1
+        }
+      ],
+      "disconnected": [],
+      "deleted": []
+    }
+  }
+}
+
+### Update NaturalPerson
+PUT localhost:8080/api/generic/3
+Content-Type: application/json
+
+{
+  "id": 3,
+  "entity": {
+    "typeId": 1538971604,
+    "properties": {
+      "name": "Neuer-Name",
+      "firstName": "Neuer-Vorname"
+    }
+  },
+  "associationStates": {
+    "offers": {
+      "connected": [
+        {
+          "typeId": -1336857774,
+          "id": 2
+        }
+      ],
+      "disconnected": [
+        {
+          "typeId": -1336857774,
+          "id": 1
+        }
+      ],
+      "deleted": []
+    }
+  }
+}
+
+### Delete NaturalPerson
+DELETE localhost:8080/api/generic/3?typeId=1538971604
+
+###

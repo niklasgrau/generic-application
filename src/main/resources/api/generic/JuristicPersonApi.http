@@ -1,0 +1,93 @@
+### Get JuristicPerson
+POST localhost:8080/api/generic/1?typeId=-1299381124
+Content-Type: application/json
+
+{
+  "typeId": -1299381124,
+  "id": 1,
+  "propertySelection": [
+    "name",
+    "taxNumber",
+    "createdAt",
+    "updatedAt"
+  ]
+}
+
+### Get all JuristicPerson
+POST localhost:8080/api/generic/list?typeId=-1299381124
+Content-Type: application/json
+
+{
+  "typeId": -1299381124,
+  "propertySelection": [
+    "name",
+    "taxNumber",
+    "createdAt",
+    "updatedAt"
+  ],
+  "page": 1,
+  "pageSize": 50
+}
+
+### Create JuristicPerson
+POST localhost:8080/api/generic
+Content-Type: application/json
+
+{
+  "entity": {
+    "typeId": -1299381124,
+    "properties": {
+      "name": "Test Juristic Person",
+      "taxNumber": "taxNumber"
+    }
+  },
+  "associationStates": {
+    "offers": {
+      "connected": [
+        {
+          "typeId": -1336857774,
+          "id": 1
+        }
+      ],
+      "disconnected": [],
+      "deleted": []
+    }
+  }
+}
+
+### Update JuristicPerson
+PUT localhost:8080/api/generic/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "entity": {
+    "typeId": -1299381124,
+    "properties": {
+      "name": "Test Juristic Person",
+      "taxNumber": "taxNumber"
+    }
+  },
+  "associationStates": {
+    "offers": {
+      "connected": [
+        {
+          "typeId": -1336857774,
+          "id": 2
+        }
+      ],
+      "disconnected": [
+        {
+          "typeId": -1336857774,
+          "id": 1
+        }
+      ],
+      "deleted": []
+    }
+  }
+}
+
+### Delete JuristicPerson
+DELETE localhost:8080/api/generic/1?typeId=-1299381124
+
+###

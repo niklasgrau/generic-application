@@ -1,0 +1,115 @@
+### Get WorkPackage
+POST localhost:8080/api/generic/1?typeId=1376919659
+Content-Type: application/json
+
+{
+  "typeId": 1376919659,
+  "id": 1,
+  "propertySelection": [
+    "designation",
+    "description",
+    "ticketNumber",
+    "customerBillable",
+    "type",
+    "project",
+    "createdAt",
+    "updatedAt"
+  ]
+}
+
+### Get all WorkPackage
+POST localhost:8080/api/generic/list?typeId=1376919659
+Content-Type: application/json
+
+{
+  "typeId": 1376919659,
+  "propertySelection": [
+    "designation",
+    "description",
+    "ticketNumber",
+    "customerBillable",
+    "type",
+    "project",
+    "createdAt",
+    "updatedAt"
+  ],
+  "page": 1,
+  "pageSize": 50
+}
+
+### Create WorkPackage
+POST localhost:8080/api/generic
+Content-Type: application/json
+
+{
+  "entity": {
+    "typeId": 1376919659,
+    "properties": {
+      "designation": "Arbeitspaket 123",
+      "description": "Arbeitspaketbeschreibung",
+      "ticketNumber": "124-Ticket",
+      "customerBillable": true,
+      "type": "CONSULTING",
+      "project": {
+        "typeId": 714405519,
+        "id": 1
+      }
+    }
+  },
+  "associationStates": {
+    "expenditures": {
+      "connected": [
+        {
+          "typeId": 288688629,
+          "id": 1
+        }
+      ],
+      "disconnected": [],
+      "deleted": []
+    }
+  }
+}
+
+### Update WorkPackage
+PUT localhost:8080/api/generic/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "entity": {
+    "typeId": 1376919659,
+    "properties": {
+      "designation": "Neues Arbeitspaket 123",
+      "description": "Neue Arbeitspaketbeschreibung",
+      "ticketNumber": "Ticket 123",
+      "customerBillable": false,
+      "type": "CONSULTING",
+      "project": {
+        "typeId": 714405519,
+        "id": 1
+      }
+    }
+  },
+  "associationStates": {
+    "expenditures": {
+      "connected": [
+        {
+          "typeId": 288688629,
+          "id": 2
+        }
+      ],
+      "disconnected": [
+        {
+          "typeId": 288688629,
+          "id": 1
+        }
+      ],
+      "deleted": []
+    }
+  }
+}
+
+### Delete WorkPackage
+DELETE localhost:8080/api/generic/1?typeId=1376919659
+
+###
